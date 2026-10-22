@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node tests/motion.test.mjs && node tests/analyze.test.mjs > /dev/null && node tests/export.test.mjs",
+    "start": "node server.js",
+    "skeletons": "node tools/make-skeletons.mjs"
   },
   "keywords": [],
   "author": "",

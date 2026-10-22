@@ -1,67 +1,95 @@
-// Exporta una animación a un archivo .rbxmx (modelo XML de Roblox).
+// Exporta una animación a .rbxmx (modelo XML de Roblox) con una KeyframeSequence.
 //
-// Contenido del archivo:
-//   AnimSaves (ObjectValue)            <- carpeta donde el Editor de Animaciones busca animaciones
-//     └ KeyframeSequence               <- la animación
+//   [contenedor "AnimSaves"]  Folder | ObjectValue | (ninguno) — configurable
+//     └ KeyframeSequence
 //         └ Keyframe (uno por instante)
-//             └ Pose HumanoidRootPart
-//                 └ Pose LowerTorso (articulación Root)
-//                     └ Pose UpperTorso, piernas... (siguiendo el esqueleto R15)
+//             └ Pose <rootPart>            (la pieza fija, p. ej. HumanoidRootPart)
+//                 └ Pose <Part1>           Motor6D: la pose lleva el nombre de la pieza que mueve
+//                     └ Pose <Bone>        Bone: la pose lleva el nombre del hueso
 //
-// Cada Pose guarda un CFrame: el giro (y para el torso, el desplazamiento) de su Motor6D.
+// Cada Pose guarda en su CFrame el Transform de su Motor6D o Bone.
+// Pendiente de verificar en Studio: el anidado de poses de huesos (Bone) bajo la MeshPart.
 
 import * as THREE from 'three';
-import { JOINTS } from './rig.js';
 import { bakeAnimation } from './animation.js';
 
-// Valores de los enums de Roblox (PoseEasingStyle / PoseEasingDirection / AnimationPriority).
-const EASING_STYLE = { Linear: 0, Constant: 1, Cubic: 3 };
-const EASING_DIRECTION_INOUT = 2;
-const PRIORITY_ACTION = 2;
+export const CONTAINERS = {
+  Folder: 'Carpeta (Folder) "AnimSaves"',
+  ObjectValue: 'ObjectValue "AnimSaves"',
+  none: 'Sin contenedor (solo la KeyframeSequence)',
+};
+
+const EASING_STYLE = { Linear: 0, Constant: 1, Cubic: 3 }; // PoseEasingStyle
+const EASING_DIRECTION_INOUT = 2; // PoseEasingDirection
+const PRIORITY_ACTION = 2; // AnimationPriority.Action
 
 const xmlEscape = (s) => String(s).replace(/[<>&'"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]));
 const num = (v) => (Math.abs(v) < 1e-9 ? 0 : Number(v.toFixed(6)));
 
+function cframeXml(position, quaternion) {
+  const e = new THREE.Matrix4().makeRotationFromQuaternion(quaternion).elements; // por columnas
+  const values = [position.x, position.y, position.z, e[0], e[4], e[8], e[1], e[5], e[9], e[2], e[6], e[10]].map(num);
+  const tags = ['X', 'Y', 'Z', 'R00', 'R01', 'R02', 'R10', 'R11', 'R12', 'R20', 'R21', 'R22'];
+  return `<CoordinateFrame name="CFrame">${tags.map((t, i) => `<${t}>${values[i]}</${t}>`).join('')}</CoordinateFrame>`;
+}
+
+// Nombre de la pose de cada articulación (lo que Roblox usa para encontrar el Motor6D/Bone).
+export const poseName = (joint) => (joint.type === 'Motor6D' ? joint.part : joint.name);
+
+// Árbol de poses (igual para todos los keyframes): raíz = rootPart.
+function poseTree(skeleton) {
+  const root = { name: skeleton.rootPart, joint: null, children: [] };
+  const nodeOf = new Map();
+  const extraParts = new Map(); // MeshParts contenedoras que no mueve ningún Motor6D
+  for (const j of skeleton.joints) {
+    const node = { name: poseName(j), joint: j, children: [] };
+    nodeOf.set(j.name, node);
+    let parent;
+    if (j.parentNode) parent = nodeOf.get(j.parentNode.name);
+    else if (j.type === 'Bone' && j.part && j.part !== skeleton.rootPart) {
+      const owner = skeleton.joints.find((m) => m.type === 'Motor6D' && m.part === j.part);
+      parent = owner ? nodeOf.get(owner.name) : null;
+      if (!parent) {
+        if (!extraParts.has(j.part)) {
+          const p = { name: j.part, joint: null, children: [] };
+          extraParts.set(j.part, p);
+          root.children.push(p);
+        }
+        parent = extraParts.get(j.part);
+      }
+    } else parent = root;
+    parent.children.push(node);
+  }
+  return root;
+}
+
 let ref = 0;
 const nextRef = () => `RBX${(ref++).toString(16).toUpperCase().padStart(8, '0')}`;
 
-// CFrame de Roblox: X Y Z y la matriz de rotación fila por fila (R00 R01 R02 R10 ... R22).
-function cframeXml(name, position, quaternion) {
-  const e = new THREE.Matrix4().makeRotationFromQuaternion(quaternion).elements; // por columnas
-  const rows = [e[0], e[4], e[8], e[1], e[5], e[9], e[2], e[6], e[10]];
-  const [x, y, z] = [position.x, position.y, position.z];
-  const tags = ['X', 'Y', 'Z', 'R00', 'R01', 'R02', 'R10', 'R11', 'R12', 'R20', 'R21', 'R22'];
-  const values = [x, y, z, ...rows].map(num);
-  return `<CoordinateFrame name="${name}">${tags.map((t, i) => `<${t}>${values[i]}</${t}>`).join('')}</CoordinateFrame>`;
-}
-
-function poseXml(partName, position, quaternion, easing, children) {
-  return `<Item class="Pose" referent="${nextRef()}"><Properties>`
-    + `<string name="Name">${partName}</string>`
-    + cframeXml('CFrame', position, quaternion)
-    + `<token name="EasingStyle">${EASING_STYLE[easing] ?? 3}</token>`
-    + `<token name="EasingDirection">${EASING_DIRECTION_INOUT}</token>`
-    + '<float name="Weight">1</float>'
-    + `</Properties>${children.join('')}</Item>`;
-}
-
-export function toRbxmx(anim) {
+export function toRbxmx(anim, skeleton, motion, { container = 'Folder' } = {}) {
   ref = 0;
-  const baked = bakeAnimation(anim);
+  const baked = bakeAnimation(anim, skeleton, motion);
+  const tree = poseTree(skeleton);
   const zero = new THREE.Vector3();
+  const identity = new THREE.Quaternion();
 
   const keyframesXml = baked.keyframes.map((k) => {
-    const build = (joint) => {
-      const children = JOINTS.filter((c) => c.parent === joint.name).map(build);
-      const position = joint.name === 'Root' ? k.root : zero;
-      return poseXml(joint.part, position, k.quats[joint.name], k.easing, children);
+    const build = (node) => {
+      const j = node.joint;
+      const q = (j && k.rot[j.name]) || identity;
+      const p = (j && k.offset[j.name]) || zero;
+      return `<Item class="Pose" referent="${nextRef()}"><Properties>`
+        + `<string name="Name">${xmlEscape(node.name)}</string>`
+        + cframeXml(p, q)
+        + `<token name="EasingStyle">${EASING_STYLE[k.easing] ?? 0}</token>`
+        + `<token name="EasingDirection">${EASING_DIRECTION_INOUT}</token>`
+        + `<float name="Weight">1</float>`
+        + `</Properties>${node.children.map(build).join('')}</Item>`;
     };
-    const rootJoint = JOINTS.find((j) => j.parent === null);
-    const hrp = poseXml('HumanoidRootPart', zero, new THREE.Quaternion(), k.easing, [build(rootJoint)]);
     return `<Item class="Keyframe" referent="${nextRef()}"><Properties>`
       + '<string name="Name">Keyframe</string>'
       + `<float name="Time">${num(k.time)}</float>`
-      + `</Properties>${hrp}</Item>`;
+      + `</Properties>${build(tree)}</Item>`;
   });
 
   const sequence = `<Item class="KeyframeSequence" referent="${nextRef()}"><Properties>`
@@ -70,8 +98,10 @@ export function toRbxmx(anim) {
     + `<token name="Priority">${PRIORITY_ACTION}</token>`
     + `</Properties>${keyframesXml.join('')}</Item>`;
 
-  return '<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" version="4">'
-    + `<Item class="ObjectValue" referent="${nextRef()}"><Properties><string name="Name">AnimSaves</string></Properties>`
-    + sequence
-    + '</Item></roblox>';
+  const wrap = container === 'Folder'
+    ? `<Item class="Folder" referent="${nextRef()}"><Properties><string name="Name">AnimSaves</string></Properties>${sequence}</Item>`
+    : container === 'ObjectValue'
+      ? `<Item class="ObjectValue" referent="${nextRef()}"><Properties><string name="Name">AnimSaves</string></Properties>${sequence}</Item>`
+      : sequence;
+  return `<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" version="4">${wrap}</roblox>`;
 }

@@ -154,7 +154,7 @@ export function createViewer(container) {
       scene.add(rig.group);
       ground.position.y = sk.ground;
       grid.position.y = sk.ground + 0.01;
-      controls.target.copy(frame(camera, sk, 'frente34'));
+      controls.target.copy(frame(camera, sk, 'frente34', 1.9));
       applyPose(rig, sk, {});
     },
     setPose(pose) { if (rig) applyPose(rig, skeleton, pose); },

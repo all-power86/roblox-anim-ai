@@ -69,7 +69,7 @@ save('r15.json', motorRig('R15', 'HumanoidRootPart', [
     rootPart: 'HumanoidRootPart',
     joints: [
       { name: 'RootJoint', type: 'Motor6D', parent: null, part: 'Torso', cframe: cf(torso.clone().multiply(angles(-pi / 2, 0, pi))), partSize: [2, 2, 1], partCFrame: cf(torso) },
-      joint('Neck', 'RootJoint', 'Head', at(0, 1, 0).multiply(angles(-pi / 2, 0, pi)), [2, 1, 1], [0, 4.5, 0]),
+      joint('Neck', 'RootJoint', 'Head', at(0, 1, 0).multiply(angles(-pi / 2, 0, pi)), [1.2, 1.2, 1.2], [0, 4.6, 0]),
       joint('Right Shoulder', 'RootJoint', 'Right Arm', at(1, 0.5, 0).multiply(angles(0, pi / 2, 0)), [1, 2, 1], [1.5, 3, 0]),
       joint('Left Shoulder', 'RootJoint', 'Left Arm', at(-1, 0.5, 0).multiply(angles(0, -pi / 2, 0)), [1, 2, 1], [-1.5, 3, 0]),
       joint('Right Hip', 'RootJoint', 'Right Leg', at(1, -1, 0).multiply(angles(0, pi / 2, 0)), [1, 2, 1], [0.5, 1, 0]),

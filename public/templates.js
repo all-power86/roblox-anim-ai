@@ -98,8 +98,8 @@ const r3 = (v) => Math.round(v * 1000) / 1000;
 // Posturas comunes.
 function wingsFolded(p, breath = 0) {
   for (const side of ['L', 'R']) {
-    p.limb('wing.1', side, null, { bend: -15 + breath, side: -35 });
-    p.each('wing.2', side, (i) => ({ bend: i === 0 ? 85 : 35 }));
+    p.limb('wing.1', side, null, { bend: -30 + breath, side: -25 });
+    p.each('wing.2', side, (i) => ({ bend: i === 0 ? 45 : 20, side: -10 }));
   }
 }
 function wingsFlap(p, s, amp = 55) {
@@ -148,7 +148,9 @@ function bipedLegs(p, table, sR, scale = 1) {
 }
 function quadLegs(p, phases, scale = 1) {
   for (const [side, region, s] of phases) {
-    p.limb('leg.upper', side, region, { bend: cycle(QUAD_STEP.upper, s) * scale });
+    // Las delanteras van algo más adelante y las traseras más atrás, para que no choquen.
+    const bias = scale > 1 ? (region === 'front' ? 8 : -8) : 0;
+    p.limb('leg.upper', side, region, { bend: cycle(QUAD_STEP.upper, s) * scale + bias });
     p.limb('leg.lower', side, region, { bend: Math.max(0, cycle(QUAD_STEP.lower, s) * scale) });
     p.limb('leg.lower2', side, region, { bend: cycle(QUAD_STEP.lower2, s) * scale });
     p.limb('foot', side, region, { bend: cycle(QUAD_STEP.foot, s) * scale });
@@ -245,8 +247,8 @@ const BIPED = {
     return { loop: false, duration: 1.4 * k, keyframes: [
       frame(0, 'Cubic', [3, 5, -2], [3, 6, 12], 0),
       frame(0.3, 'Cubic', [55, 95, -40], [-45, 10, 20], 22, { tail: -10 }),
-      frame(0.45, 'Linear', [-5, 5, 35], [150, 15, 10], -5, { flap: 0.75 }),
-      frame(0.68, 'Cubic', [40, 70, 10], [165, 20, 15], 5, { air: 0.55 * L, flap: 0.25, tail: 15 }),
+      frame(0.45, 'Linear', [-5, 5, 35], [140, 30, 10], -5, { flap: 0.75 }),
+      frame(0.68, 'Cubic', [40, 70, 10], [150, 35, 15], 5, { air: 0.55 * L, flap: 0.25, tail: 15 }),
       frame(0.92, 'Cubic', [50, 85, -30], [40, 25, 30], 18, { flap: 0.5 }),
       frame(1.12, 'Cubic', [15, 25, -8], [10, 10, 15], 5),
       frame(1.4, 'Cubic', [3, 5, -2], [3, 6, 12], 0),
@@ -348,7 +350,7 @@ const QUAD = {
     const T = 0.6 * ctx.timeScale;
     // Trote: patas en diagonal a la vez.
     return { loop: true, duration: T, keyframes: loopFrames(ctx, T, 12, (p, s, t) => {
-      quadLegs(p, [['L', 'front', s], ['R', 'hind', s], ['R', 'front', s + 0.5], ['L', 'hind', s + 0.5]], 1.5);
+      quadLegs(p, [['L', 'front', s], ['R', 'hind', s], ['R', 'front', s + 0.5], ['L', 'hind', s + 0.5]], 1.3);
       p.chain('spine', { bend: 5 * Math.sin(TAU * 2 * s) });
       p.chain('neck', { bend: 10 + 6 * Math.cos(TAU * 2 * s) });
       p.limb('head', null, null, { bend: -6 });
@@ -477,7 +479,7 @@ export function buildTemplate(id, ctx) {
   const meta = TEMPLATE_LIST.find((t) => t.id === id);
   const anim = { name: meta?.label || id, template: id, ...make(ctx) };
   anim.duration = Math.round(anim.duration * 1000) / 1000;
-  groundFix(anim, ctx.skeleton, ctx.motion);
+  groundFix(anim, ctx.skeleton, ctx.motion, { plant: !['walk', 'run'].includes(id) });
   return anim;
 }
 

@@ -14,42 +14,70 @@
 </head>
 <body>
   <aside class="panel">
-    <h1>Animador IA <span>R15</span></h1>
+    <h1>Animador IA <span>Roblox</span></h1>
 
-    <label for="prompt">Describe la animación</label>
-    <textarea id="prompt" rows="3" placeholder="Ej.: saludar con la mano">saludar con la mano</textarea>
-    <button id="generate" class="primary">Generar con IA</button>
-    <p id="status" class="status"></p>
+    <section>
+      <h2>1. Modelo</h2>
+      <div class="row">
+        <select id="skeleton-select" aria-label="Esqueleto">
+          <option value="r15">R15</option>
+          <option value="r6">R6</option>
+          <option value="yeti">Yeti (bípedo grande)</option>
+          <option value="lobo">Lobo (cuadrúpedo, huesos)</option>
+          <option value="dragon">Dragón (alas y cola)</option>
+          <option value="puerta">Puerta con bisagra</option>
+        </select>
+        <label class="button">Cargar JSON…<input id="skeleton-file" type="file" accept=".json,application/json" hidden></label>
+      </div>
+      <p id="skeleton-info" class="muted"></p>
+      <details id="parts">
+        <summary>Partes detectadas <span id="parts-badge"></span></summary>
+        <p class="muted">Si alguna función está mal, cámbiala aquí: las animaciones se recalculan.</p>
+        <table id="parts-table"><thead><tr><th>Parte</th><th>Función</th><th>Lado</th><th>Pata</th></tr></thead><tbody></tbody></table>
+      </details>
+    </section>
 
-    <div class="presets">
-      <span>Demos sin IA:</span>
-      <button data-preset="saludar">Saludar</button>
-      <button data-preset="saltar">Saltar</button>
-      <button data-preset="bailar">Bailar</button>
-    </div>
+    <section>
+      <h2>2. Animación</h2>
+      <div id="templates" class="chips"></div>
+      <textarea id="prompt" rows="3" placeholder="Ej.: caminar cansado arrastrando los pies">atacar con un zarpazo rápido</textarea>
+      <label class="check"><input id="self-review" type="checkbox" checked> Autorrevisión con capturas (hasta 3 rondas)</label>
+      <button id="generate" class="primary">Generar con IA</button>
+      <p id="status" class="status"></p>
+    </section>
 
-    <div class="player">
-      <button id="play" title="Reproducir / pausa">⏸</button>
-      <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" aria-label="Línea de tiempo">
-      <span id="time">0.00 s</span>
-    </div>
-    <label class="speed">Velocidad
-      <select id="speed">
-        <option value="0.25">0.25×</option>
-        <option value="0.5">0.5×</option>
-        <option value="1" selected>1×</option>
-        <option value="2">2×</option>
-      </select>
-    </label>
+    <section>
+      <div class="player">
+        <button id="play" title="Reproducir / pausa">⏸</button>
+        <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" aria-label="Línea de tiempo">
+        <span id="time">0.00 s</span>
+        <select id="speed" aria-label="Velocidad">
+          <option value="0.25">0.25×</option><option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option><option value="2">2×</option>
+        </select>
+      </div>
+      <h3 id="anim-name">—</h3>
+    </section>
 
-    <h2 id="anim-name">—</h2>
-    <ol id="keyframes" class="keyframes"></ol>
-    <button id="export-roblox" class="primary">Descargar para Roblox Studio (.rbxmx)</button>
-    <button id="download">Descargar keyframes (JSON)</button>
+    <section>
+      <h2>Revisión automática</h2>
+      <ul id="issues" class="issues"></ul>
+      <details id="log-box" hidden>
+        <summary>Registro de la IA</summary>
+        <ol id="log" class="log"></ol>
+      </details>
+    </section>
+
+    <section>
+      <h2>3. Exportar</h2>
+      <label class="muted" for="container">Contenedor del .rbxmx</label>
+      <select id="container"></select>
+      <button id="export-roblox" class="primary">Descargar para Roblox Studio (.rbxmx)</button>
+      <button id="download">Descargar animación (JSON)</button>
+    </section>
   </aside>
 
   <main id="viewer"></main>
-
   <script type="module" src="app.js"></script>
 </body>
 </html>
