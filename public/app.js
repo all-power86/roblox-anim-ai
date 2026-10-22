@@ -222,6 +222,7 @@ $('generate').onclick = async () => {
       }
     }
     anim.reviewLog = state.log.map(({ title, text }) => ({ title, text }));
+    window.__ultimaAnimacion = anim; // para tools/prueba-ia.mjs
     setAnimation(anim, { keepLog: true });
     setStatus(`¡Lista! (${((performance.now() - started) / 1000).toFixed(0)} s)`);
   } catch (err) {
