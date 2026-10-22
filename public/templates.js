@@ -445,12 +445,13 @@ const QUAD = {
     };
     return { loop: false, duration: 2.4 * k, keyframes: [
       frame(0, 0, 0, 0),
+      frame(0.15, 0.15, 50, 5), // primero despega la pata (dobla la muñeca) para no arrastrarla
       frame(0.4, 1, 0, 20),
       frame(0.7, 1, 40, -20),
       frame(1.0, 1, 0, 20),
       frame(1.3, 1, 40, -20),
       frame(1.6, 1, 0, 20),
-      frame(2.0, 0.2, 0, 0),
+      frame(2.0, 0.2, 50, 0),
       frame(2.4, 0, 0, 0),
     ] };
   },

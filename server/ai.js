@@ -125,6 +125,13 @@ async function callClaude(content, schema, label) {
   return { data: parsed.data, usage: msg.usage };
 }
 
+// La animación tal como la escribió quien la creó (IA o plantilla), sin los ajustes
+// automáticos de suelo y pies: es lo que la IA debe ver y corregir.
+function authoredView(anim) {
+  const { authored, reviewLog, ...rest } = anim;
+  return { ...rest, keyframes: authored || anim.keyframes };
+}
+
 // ---------- API ----------
 
 export async function generate({ prompt, skeleton: raw, roles, bodyType }) {
@@ -137,7 +144,7 @@ ${describeSkeleton(skeleton, motion, roles, ctx)}
 
 PLANTILLA BASE ("${TEMPLATE_LIST.find((t) => t.id === base.template)?.label}", elegida por palabras clave; si la descripción pide otra cosa, adáptala igualmente o cámbiala):
 <plantilla>
-${JSON.stringify(base)}
+${JSON.stringify(authoredView(base))}
 </plantilla>
 
 Devuelve la animación completa que cumple la descripción.`;
@@ -166,8 +173,8 @@ ${describeSkeleton(skeleton, motion, roles, ctx)}
 FALLOS DETECTADOS AUTOMÁTICAMENTE (medidos, son fiables):
 ${issueText}
 
-ANIMACIÓN ACTUAL:
-${JSON.stringify(animation)}
+ANIMACIÓN ACTUAL (tal como la escribiste; después el programa ajusta solo la altura al suelo y las patas apoyadas, por eso la imagen puede variar un poco):
+${JSON.stringify(authoredView(animation))}
 
 Revisa con ojo de animador: extremidades atravesándose, pies que patinan, giros imposibles, falta de ritmo o de peso, y si cumple la descripción.
 - Si está bien (o los únicos fallos son menores), responde ok=true, animation=null.

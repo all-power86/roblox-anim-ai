@@ -45,6 +45,9 @@ export function bakeAnimation(anim, skeleton, motion) {
   const exceeded = [];
   const rootName = motion.rootJoint;
   const hasRootRole = motion.joints[rootName]?.role === 'root';
+  // Si algún keyframe gira el cuerpo, todos llevan su giro (también los que lo tienen a 0);
+  // si no, los primeros keyframes heredarían el giro del siguiente.
+  const rootTurns = kfs.some((k) => k.root && (k.root.bend || k.root.side || k.root.twist));
 
   for (const k of kfs) {
     const seen = new Set();
@@ -59,7 +62,7 @@ export function bakeAnimation(anim, skeleton, motion) {
     const r = { ...ZERO_ROOT, ...(k.root || {}) };
     if (hasRootRole) {
       rootTrack.push({ t: k.time, v: rootOffsetToLocal(motion, r), easing: k.easing });
-      if (!seen.has(rootName) && (r.bend || r.side || r.twist || tracks[rootName])) {
+      if (!seen.has(rootName) && (rootTurns || tracks[rootName])) {
         const { values } = clampValues(motion.joints[rootName], r);
         (tracks[rootName] ||= []).push({ t: k.time, q: valuesToQuaternion(motion.joints[rootName], values), easing: k.easing });
       }
@@ -155,6 +158,17 @@ function footJoints(skeleton, motion) {
   });
 }
 
+// Tramos de la pata que se pueden ajustar: cadera (leg.upper) y rodilla (leg.lower).
+function legChain(foot, motion) {
+  const chain = [];
+  for (let j = foot.parentNode; j; j = j.parentNode) {
+    const r = motion.joints[j.name]?.role;
+    if (r === 'leg.upper' || r === 'leg.lower') chain.unshift(j.name);
+    if (r === 'leg.upper') break;
+  }
+  return chain;
+}
+
 // Pies fijos (cinemática inversa por búsqueda): en un keyframe, ajusta el "bend" de cadera
 // y rodilla de cada pata apoyada para que el pie vuelva a su sitio de reposo. Funciona con
 // cualquier pata (2-4 tramos, Motor6D o Bone) porque usa los ejes anatómicos de motion.js.
@@ -163,13 +177,7 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
   const fk0 = forwardKinematics(skeleton, baked.keyframes[index]);
   const planted = feet.filter((f) => new THREE.Vector3().setFromMatrixPosition(fk0[f.name]).y - f.restPos.y < 0.15 * L);
   for (const foot of planted) {
-    // Tramos de la pata que se pueden ajustar: cadera (leg.upper) y rodilla (leg.lower).
-    const chain = [];
-    for (let j = foot.parentNode; j; j = j.parentNode) {
-      const r = motion.joints[j.name]?.role;
-      if (r === 'leg.upper' || r === 'leg.lower') chain.unshift(j.name);
-      if (r === 'leg.upper') break;
-    }
+    const chain = legChain(foot, motion);
     if (chain.length < 2) continue;
     const entry = (name) => {
       let p = k.poses.find((q) => q.joint === name);
@@ -209,8 +217,12 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
 // Ajuste al suelo:
 //  - grounded (por defecto): el punto más bajo toca el suelo (+ lift);
 //  - grounded=false: como mínimo no atraviesa el suelo (y queda a `lift` si se indica);
-//  - plant: (animaciones sin desplazamiento) mueve el cuerpo en horizontal para que
-//    los pies apoyados no patinen respecto a su posición de reposo;
+//  - plant: (animaciones sin desplazamiento) los pies apoyados no patinan: se doblan cadera y
+//    rodilla para devolverlos a su sitio, así se respeta el desplazamiento que pide la
+//    animación (root.right/forward, p. ej. una embestida). Solo si la pata no tiene rodilla
+//    (p. ej. R6) se mueve el cuerpo en horizontal para que el pie no patine;
+//  - guarda en anim.authored los keyframes tal como llegaron (sin ajustes), para que la IA
+//    corrija su propia versión y los ajustes no se acumulen ronda tras ronda;
 //  - si entre dos keyframes el cuerpo se hunde, inserta un keyframe intermedio y lo corrige.
 export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
   if (motion.joints[motion.rootJoint]?.role !== 'root') return { changed: 0, inserted: 0 };
@@ -218,8 +230,15 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
   const L = Math.max(skeleton.byName[motion.rootJoint].restPos.y - skeleton.ground, 0.5);
   let changed = 0;
   let inserted = 0;
+  anim.authored = structuredClone(anim.keyframes);
 
-  const fixKeyframes = () => {
+  // Pies cuya pata no se puede doblar para devolverlos a su sitio (sin rodilla).
+  const rigidFeet = feet.filter((f) => legChain(f, motion).length < 2);
+
+  // plantFeet: solo en la primera pasada. Doblar cadera y rodilla solo corrige hacia
+  // delante/atrás; de lado (y con patas sin rodilla, también hacia delante) un pie apoyado
+  // solo se queda quieto moviendo el cuerpo, así que ahí manda el pie.
+  const fixKeyframes = (plantFeet = false) => {
     anim.keyframes.sort((a, b) => a.time - b.time);
     const baked = bakeAnimation(anim, skeleton, motion);
     anim.keyframes.forEach((k, i) => {
@@ -231,17 +250,14 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
       else if (low < skeleton.ground) up = skeleton.ground - low;
       let right = 0;
       let forward = 0;
-      if (plant && k.grounded !== false && feet.length) {
-        const contact = feet.filter((f) => new THREE.Vector3().setFromMatrixPosition(fk[f.name]).y + up - f.restPos.y < 0.08 * L);
-        if (contact.length) {
-          const now = new THREE.Vector3();
-          const rest = new THREE.Vector3();
-          contact.forEach((f) => { now.add(new THREE.Vector3().setFromMatrixPosition(fk[f.name])); rest.add(f.restPos); });
-          now.divideScalar(contact.length);
-          rest.divideScalar(contact.length);
-          right = rest.x - now.x;
-          forward = -(rest.z - now.z);
-        }
+      if (plantFeet && k.grounded !== false) {
+        const pos = (f) => new THREE.Vector3().setFromMatrixPosition(fk[f.name]);
+        const onGround = (f) => pos(f).y + up - f.restPos.y < 0.08 * L;
+        const drift = (list) => list.reduce((s, f) => s.add(f.restPos.clone().sub(pos(f))), new THREE.Vector3()).divideScalar(list.length);
+        const contact = feet.filter(onGround);
+        if (contact.length) right = drift(contact).x;
+        const rigid = contact.filter((f) => rigidFeet.includes(f));
+        if (rigid.length) forward = -drift(rigid).z;
       }
       if (Math.abs(up) > 1e-3 || Math.abs(right) > 1e-3 || Math.abs(forward) > 1e-3) {
         k.root = { ...ZERO_ROOT, ...(k.root || {}) };
@@ -254,7 +270,7 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
   };
 
   if (plant && feet.length) {
-    fixKeyframes();
+    fixKeyframes(true);
     anim.keyframes.forEach((k, i) => { if (k.grounded !== false) pinFeet(anim, skeleton, motion, k, i, feet, L); });
   }
   for (let iter = 0; iter < 4; iter++) {
