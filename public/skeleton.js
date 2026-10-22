@@ -8,6 +8,13 @@ import * as THREE from 'three';
 
 export const FORMAT_ID = 'roblox-anim-ai/skeleton@1';
 
+// Articulaciones que mueven una pieza entera (Part1). Los rigs R15 nuevos de Studio usan
+// AnimationConstraint en lugar de Motor6D; para animar funcionan igual.
+export const PART_JOINTS = new Set(['Motor6D', 'AnimationConstraint']);
+// Restricciones físicas que acompañan a las articulaciones (p. ej. BallSocketConstraint junto a
+// cada AnimationConstraint, para el ragdoll). No se animan: se ignoran al cargar.
+export const IGNORED_TYPES = new Set(['BallSocketConstraint']);
+
 // CFrame de Roblox (12 números: X Y Z R00 R01 R02 R10 R11 R12 R20 R21 R22) -> Matrix4.
 export function cframeToMatrix(c) {
   const [x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22] = c;
@@ -35,11 +42,11 @@ export function validateSkeleton(raw) {
     if (typeof j.name !== 'string' || !j.name) errors.push(`${where}: falta "name".`);
     if (names.has(j.name)) errors.push(`${where}: nombre repetido.`);
     names.add(j.name);
-    if (j.type !== 'Motor6D' && j.type !== 'Bone') errors.push(`${where}: "type" debe ser "Motor6D" o "Bone".`);
+    if (!PART_JOINTS.has(j.type) && j.type !== 'Bone') errors.push(`${where}: "type" debe ser "Motor6D", "AnimationConstraint" o "Bone".`);
     if (!Array.isArray(j.cframe) || j.cframe.length !== 12 || j.cframe.some((v) => typeof v !== 'number')) {
       errors.push(`${where}: "cframe" debe tener 12 números.`);
     }
-    if (j.type === 'Motor6D' && !j.part) errors.push(`${where}: un Motor6D necesita "part" (la pieza que mueve).`);
+    if (PART_JOINTS.has(j.type) && !j.part) errors.push(`${where}: un ${j.type} necesita "part" (la pieza que mueve).`);
   }
   for (const j of raw.joints) {
     if (j.parent != null && !names.has(j.parent)) errors.push(`${j.name}: el padre "${j.parent}" no existe.`);
@@ -58,6 +65,8 @@ export function validateSkeleton(raw) {
 
 // Prepara el esqueleto: ordena padres antes que hijos y calcula matrices de reposo.
 export function prepareSkeleton(raw) {
+  const ignored = Array.isArray(raw?.joints) ? raw.joints.filter((j) => IGNORED_TYPES.has(j?.type)) : [];
+  if (ignored.length) raw = { ...raw, joints: raw.joints.filter((j) => !IGNORED_TYPES.has(j?.type)) };
   const errors = validateSkeleton(raw);
   if (errors.length) throw new Error(errors.join('\n'));
 
@@ -77,7 +86,7 @@ export function prepareSkeleton(raw) {
       restLocal: parent ? parent.restWorld.clone().invert().multiply(restWorld) : restWorld.clone(),
       restPos: new THREE.Vector3().setFromMatrixPosition(restWorld),
       restRot: new THREE.Quaternion().setFromRotationMatrix(restWorld),
-      // Pieza que mueve (Motor6D) en el espacio de la articulación, para dibujarla.
+      // Pieza que mueve (Motor6D/AnimationConstraint) en el espacio de la articulación, para dibujarla.
       partOffset: j.partCFrame ? restWorld.clone().invert().multiply(cframeToMatrix(j.partCFrame)) : null,
     };
     if (parent) parent.children.push(node);
@@ -92,6 +101,7 @@ export function prepareSkeleton(raw) {
     raw,
     joints: ordered,
     byName,
+    ignored: ignored.map((j) => `${j.name} (${j.type})`),
   };
 
   // Medidas generales (en reposo): suelo, altura, tamaño.

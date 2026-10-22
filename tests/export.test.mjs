@@ -74,5 +74,16 @@ for (const f of fs.readdirSync(dir)) {
     }
   }
 }
+// R15 nuevo (AnimationConstraint + BallSocketConstraint): el .rbxmx debe ser idéntico al del
+// R15 con Motor6D (las poses llevan el nombre de la pieza que mueve cada articulación).
+{
+  const xml = (f) => {
+    const sk = prepareSkeleton(JSON.parse(fs.readFileSync(new URL(f, dir))));
+    const cls = classifySkeleton(sk);
+    const motion = buildMotion(sk, cls.joints);
+    return toRbxmx(buildTemplate('walk', makeContext(sk, motion, cls.bodyType)), sk, motion);
+  };
+  if (xml('r15.json') !== xml('r15-nuevo.json')) { fails++; console.log('FALLO: el R15 con AnimationConstraint no exporta igual que el de Motor6D'); }
+}
 console.log(`${files} archivos .rbxmx generados; ${fails ? fails + ' fallos' : 'todo correcto'}`);
 process.exit(fails ? 1 : 0);

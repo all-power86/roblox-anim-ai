@@ -1,0 +1,872 @@
+{
+ "format": "roblox-anim-ai/skeleton@1",
+ "name": "R15 nuevo (AnimationConstraint)",
+ "rootPart": "HumanoidRootPart",
+ "joints": [
+  {
+   "name": "Root",
+   "type": "AnimationConstraint",
+   "parent": null,
+   "part": "LowerTorso",
+   "cframe": [
+    0,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    2,
+    0.4,
+    1
+   ],
+   "partCFrame": [
+    0,
+    2.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Waist",
+   "type": "AnimationConstraint",
+   "parent": "Root",
+   "part": "UpperTorso",
+   "cframe": [
+    0,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    2,
+    1.6,
+    1
+   ],
+   "partCFrame": [
+    0,
+    3.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "WaistBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Root",
+   "part": "UpperTorso",
+   "cframe": [
+    0,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Neck",
+   "type": "AnimationConstraint",
+   "parent": "Waist",
+   "part": "Head",
+   "cframe": [
+    0,
+    4.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "partCFrame": [
+    0,
+    5.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "NeckBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Waist",
+   "part": "Head",
+   "cframe": [
+    0,
+    4.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightShoulder",
+   "type": "AnimationConstraint",
+   "parent": "Waist",
+   "part": "RightUpperArm",
+   "cframe": [
+    1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.1,
+    1
+   ],
+   "partCFrame": [
+    1.5,
+    4.15,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightShoulderBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Waist",
+   "part": "RightUpperArm",
+   "cframe": [
+    1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightElbow",
+   "type": "AnimationConstraint",
+   "parent": "RightShoulder",
+   "part": "RightLowerArm",
+   "cframe": [
+    1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1,
+    0.95
+   ],
+   "partCFrame": [
+    1.5,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightElbowBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "RightShoulder",
+   "part": "RightLowerArm",
+   "cframe": [
+    1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightWrist",
+   "type": "AnimationConstraint",
+   "parent": "RightElbow",
+   "part": "RightHand",
+   "cframe": [
+    1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.9,
+    0.4,
+    0.9
+   ],
+   "partCFrame": [
+    1.5,
+    2.4,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightWristBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "RightElbow",
+   "part": "RightHand",
+   "cframe": [
+    1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftShoulder",
+   "type": "AnimationConstraint",
+   "parent": "Waist",
+   "part": "LeftUpperArm",
+   "cframe": [
+    -1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.1,
+    1
+   ],
+   "partCFrame": [
+    -1.5,
+    4.15,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftShoulderBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Waist",
+   "part": "LeftUpperArm",
+   "cframe": [
+    -1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftElbow",
+   "type": "AnimationConstraint",
+   "parent": "LeftShoulder",
+   "part": "LeftLowerArm",
+   "cframe": [
+    -1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1,
+    0.95
+   ],
+   "partCFrame": [
+    -1.5,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftElbowBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "LeftShoulder",
+   "part": "LeftLowerArm",
+   "cframe": [
+    -1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftWrist",
+   "type": "AnimationConstraint",
+   "parent": "LeftElbow",
+   "part": "LeftHand",
+   "cframe": [
+    -1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.9,
+    0.4,
+    0.9
+   ],
+   "partCFrame": [
+    -1.5,
+    2.4,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftWristBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "LeftElbow",
+   "part": "LeftHand",
+   "cframe": [
+    -1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightHip",
+   "type": "AnimationConstraint",
+   "parent": "Root",
+   "part": "RightUpperLeg",
+   "cframe": [
+    0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.2,
+    1
+   ],
+   "partCFrame": [
+    0.5,
+    2.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightHipBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Root",
+   "part": "RightUpperLeg",
+   "cframe": [
+    0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightKnee",
+   "type": "AnimationConstraint",
+   "parent": "RightHip",
+   "part": "RightLowerLeg",
+   "cframe": [
+    0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1.2,
+    0.95
+   ],
+   "partCFrame": [
+    0.5,
+    0.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightKneeBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "RightHip",
+   "part": "RightLowerLeg",
+   "cframe": [
+    0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightAnkle",
+   "type": "AnimationConstraint",
+   "parent": "RightKnee",
+   "part": "RightFoot",
+   "cframe": [
+    0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    0.3,
+    1.2
+   ],
+   "partCFrame": [
+    0.5,
+    0.15,
+    -0.1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightAnkleBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "RightKnee",
+   "part": "RightFoot",
+   "cframe": [
+    0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftHip",
+   "type": "AnimationConstraint",
+   "parent": "Root",
+   "part": "LeftUpperLeg",
+   "cframe": [
+    -0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.2,
+    1
+   ],
+   "partCFrame": [
+    -0.5,
+    2.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftHipBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "Root",
+   "part": "LeftUpperLeg",
+   "cframe": [
+    -0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftKnee",
+   "type": "AnimationConstraint",
+   "parent": "LeftHip",
+   "part": "LeftLowerLeg",
+   "cframe": [
+    -0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1.2,
+    0.95
+   ],
+   "partCFrame": [
+    -0.5,
+    0.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftKneeBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "LeftHip",
+   "part": "LeftLowerLeg",
+   "cframe": [
+    -0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftAnkle",
+   "type": "AnimationConstraint",
+   "parent": "LeftKnee",
+   "part": "LeftFoot",
+   "cframe": [
+    -0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    0.3,
+    1.2
+   ],
+   "partCFrame": [
+    -0.5,
+    0.15,
+    -0.1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftAnkleBallSocket",
+   "type": "BallSocketConstraint",
+   "parent": "LeftKnee",
+   "part": "LeftFoot",
+   "cframe": [
+    -0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  }
+ ]
+}

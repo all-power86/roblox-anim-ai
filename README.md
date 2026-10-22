@@ -29,7 +29,7 @@ La clave de la IA **solo** la lee el servidor. Nunca se envía al navegador.
 Opcional: `ANIM_MODEL=claude-sonnet-5-5` usa un modelo más barato (la mitad de precio, algo menos fino).
 
 **Coste aproximado con el modelo por defecto (Claude Opus 5.5): entre 0,20 y 0,80 $ por animación**,
-según cuántas rondas de revisión haga. Es una estimación; todavía no se ha medido con una clave real.
+según cuántas rondas de revisión haga. Medido en la prueba real: 0,38 $ (2 rondas) y 0,79 $ (3 rondas).
 El consumo de cada llamada se guarda en `logs/revisiones.jsonl`.
 
 ## Usar la web
@@ -74,8 +74,10 @@ Falta ver la reproducción con Play para juzgar cómo se mueve.
 
 ## Pruebas automáticas
 
-- `npm test`: comprueba el sentido de giro de todas las articulaciones (207 casos), pasa la revisión automática
-  por todas las plantillas y verifica que los 96 `.rbxmx` generados reproducen exactamente la vista previa.
+- `npm test`: comprueba el sentido de giro de todas las articulaciones (237 casos), pasa la revisión automática
+  por todas las plantillas y verifica que los 114 `.rbxmx` generados reproducen exactamente la vista previa.
+  También comprueba que la revisión detecta el mordisco real del lobo que fallaba en Studio (cabeza hacia arriba
+  y cuerpo que no se lanza) y que el R15 nuevo con AnimationConstraint exporta igual que el de Motor6D.
 - IA simulada (sin clave ni coste): `node tests/mock-anthropic.mjs 4010` y en otra terminal
   `ANIM_ANTHROPIC_KEY=x ANTHROPIC_BASE_URL=http://localhost:4010 npm start`.
 - Capturas: `node tools/capture.mjs docs/capturas` (necesita Playwright y el servidor arrancado).
@@ -93,17 +95,21 @@ Falta ver la reproducción con Play para juzgar cómo se mueve.
 | `public/animation.js` | Formato de animación, ajuste al suelo y pies fijos. |
 | `public/analyze.js` | Detección automática de fallos. |
 | `public/viewer.js` | Vista 3D y hojas de capturas. |
-| `public/export-roblox.js` | Exportación `.rbxmx` (Motor6D y Bone). |
+| `public/export-roblox.js` | Exportación `.rbxmx` (Motor6D, AnimationConstraint y Bone). |
 | `public/skeletons/` | Esqueletos de prueba (se generan con `npm run skeletons`). |
 | `docs/` | Formato de esqueleto, capturas y ejemplos para Studio. |
 
 ## Limitaciones conocidas
 
-- **Sin probar con la IA real:** el flujo de IA se ha probado con una IA simulada. La calidad de lo que genera
-  Claude está por medir con una clave.
-- **Falta mirar en Studio la reproducción** (Play): ya está comprobado que el Editor de Animaciones carga
-  el R15 (contenedor Folder) y el lobo con huesos, pero no cómo se ven moviéndose.
+- **Prueba real con IA (22/10/2026):** R15 "caminar cansado" (0,38 $) y lobo "atacar mordiendo" (0,79 $); resultados en
+  [docs/prueba-ia](docs/prueba-ia/). Revisadas en Studio pose a pose: el R15 bien; el lobo levantaba la cabeza al morder
+  y apenas se lanzaba hacia delante. Ya está corregido (la IA no podía mover el cuerpo y ahora la revisión detecta
+  los dos fallos), pero falta repetir la prueba real.
+- **R15 nuevo con AnimationConstraint: sin probar en Studio.** El `.rbxmx` es idéntico al del R15 con Motor6D,
+  porque las poses llevan el nombre de la pieza que mueve cada articulación. Todavía no hay un script de Studio
+  que lea el rig y genere el JSON del esqueleto: hay que escribirlo a mano o usar `r15-nuevo.json`.
 - El modelo debe mirar hacia -Z en el esqueleto (el futuro plugin lo normalizará).
 - Los ángulos son relativos a la pose de reposo. Las plantillas suponen brazos caídos; en un modelo en pose "T"
   los brazos quedarán más abiertos.
-- En los saltos de cuadrúpedos las patas delanteras patinan un poco durante el impulso (aviso naranja).
+- En los saltos de cuadrúpedos las patas delanteras patinan un poco durante el impulso, y en el saludo del lobo
+  la pata que se levanta roza el suelo al despegar (avisos naranjas).

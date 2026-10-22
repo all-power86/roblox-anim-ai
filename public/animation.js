@@ -171,7 +171,7 @@ export function legChain(foot, motion) {
 
 // Pies fijos (cinemática inversa por búsqueda): en un keyframe, ajusta el "bend" de cadera
 // y rodilla de cada pata apoyada para que el pie vuelva a su sitio de reposo. Funciona con
-// cualquier pata (2-4 tramos, Motor6D o Bone) porque usa los ejes anatómicos de motion.js.
+// cualquier pata (2-4 tramos, Motor6D, AnimationConstraint o Bone) porque usa los ejes anatómicos de motion.js.
 function pinFeet(anim, skeleton, motion, k, index, feet, L) {
   const baked = bakeAnimation(anim, skeleton, motion);
   const fk0 = forwardKinematics(skeleton, baked.keyframes[index]);

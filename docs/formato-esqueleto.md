@@ -39,12 +39,12 @@ El futuro plugin de Studio lo exportará automáticamente; también se puede esc
 
 | Campo | Obligatorio | Qué es |
 |---|---|---|
-| `name` | sí | Nombre del `Motor6D` o del `Bone`. Debe ser único. |
-| `type` | sí | `"Motor6D"` o `"Bone"`. |
-| `parent` | sí | Nombre de la articulación padre, o `null` si cuelga directamente de `rootPart`. En un Motor6D, el padre es la articulación cuya pieza es el `Part0` de este. |
-| `part` | Motor6D: sí. Bone raíz: sí | Motor6D: nombre del `Part1` (la pieza que mueve; la pose del `.rbxmx` lleva este nombre). Bone sin padre: la MeshPart que contiene el hueso. |
-| `cframe` | sí | Marco de la articulación **en reposo, en coordenadas de mundo**: los 12 números de `CFrame:GetComponents()`. Motor6D: `Part0.CFrame * C0`. Bone: `Bone.WorldCFrame`. |
-| `partSize`, `partCFrame` | no | Tamaño y CFrame de mundo del `Part1` (Motor6D). Sirven para dibujar la vista previa y detectar choques. |
+| `name` | sí | Nombre del `Motor6D`, `AnimationConstraint` o `Bone`. Debe ser único. |
+| `type` | sí | `"Motor6D"`, `"AnimationConstraint"` (rigs R15 nuevos de Studio) o `"Bone"`. Las entradas `"BallSocketConstraint"` se aceptan y se ignoran (solo son física del ragdoll). |
+| `parent` | sí | Nombre de la articulación padre, o `null` si cuelga directamente de `rootPart`. En un Motor6D o AnimationConstraint, el padre es la articulación cuya pieza es el `Part0` (o el padre de `Attachment0`) de este. |
+| `part` | Motor6D/AnimationConstraint: sí. Bone raíz: sí | Motor6D/AnimationConstraint: nombre del `Part1` (la pieza que mueve, el padre de `Attachment1`; la pose del `.rbxmx` lleva este nombre). Bone sin padre: la MeshPart que contiene el hueso. |
+| `cframe` | sí | Marco de la articulación **en reposo, en coordenadas de mundo**: los 12 números de `CFrame:GetComponents()`. Motor6D: `Part0.CFrame * C0`. AnimationConstraint: `Attachment0.WorldCFrame`. Bone: `Bone.WorldCFrame`. |
+| `partSize`, `partCFrame` | no | Tamaño y CFrame de mundo del `Part1` (Motor6D/AnimationConstraint). Sirven para dibujar la vista previa y detectar choques. |
 | `radius` | no | Grosor aproximado del hueso (Bone), para la vista previa y los choques. |
 | `role`, `side` | no | Fuerza la función de la parte (ver lista) y el lado (`L`, `R`, `C`). Si faltan, se detectan solos. |
 | `hingeAxis` | no | Solo bisagras: eje de giro en mundo, p. ej. `[0, 1, 0]`. |
@@ -67,6 +67,7 @@ El futuro plugin de Studio lo exportará automáticamente; también se puede esc
 Para cada articulación el programa calcula un giro local `T` (y una traslación en la raíz):
 
 - Motor6D: `Part1.CFrame = Part0.CFrame * C0 * T * C1:Inverse()`, es decir, `Motor6D.Transform = T`.
+- AnimationConstraint: `Part1.CFrame = Attachment0.WorldCFrame * T * Attachment1.CFrame:Inverse()`, es decir, `AnimationConstraint.Transform = T`.
 - Bone: `Bone.Transform = T`.
 
 En el `.rbxmx`, cada `Pose` guarda ese `T` en su `CFrame`.

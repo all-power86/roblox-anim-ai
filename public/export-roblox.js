@@ -4,15 +4,16 @@
 //     └ KeyframeSequence
 //         └ Keyframe (uno por instante)
 //             └ Pose <rootPart>            (la pieza fija, p. ej. HumanoidRootPart)
-//                 └ Pose <Part1>           Motor6D: la pose lleva el nombre de la pieza que mueve
+//                 └ Pose <Part1>           Motor6D o AnimationConstraint: la pose lleva el nombre de la pieza que mueve
 //                     └ Pose <Bone>        Bone: la pose lleva el nombre del hueso
 //
-// Cada Pose guarda en su CFrame el Transform de su Motor6D o Bone.
+// Cada Pose guarda en su CFrame el Transform de su Motor6D, AnimationConstraint o Bone.
 // Probado en Studio (22/10/2026): con el contenedor Folder el Editor de Animaciones carga
 // la animación del R15 y la del lobo con huesos (lista toda la jerarquía de huesos).
 
 import * as THREE from 'three';
 import { bakeAnimation } from './animation.js';
+import { PART_JOINTS } from './skeleton.js';
 
 export const CONTAINERS = {
   Folder: 'Carpeta (Folder) "AnimSaves" — recomendado, probado en Studio',
@@ -34,21 +35,22 @@ function cframeXml(position, quaternion) {
   return `<CoordinateFrame name="CFrame">${tags.map((t, i) => `<${t}>${values[i]}</${t}>`).join('')}</CoordinateFrame>`;
 }
 
-// Nombre de la pose de cada articulación (lo que Roblox usa para encontrar el Motor6D/Bone).
-export const poseName = (joint) => (joint.type === 'Motor6D' ? joint.part : joint.name);
+// Nombre de la pose de cada articulación (lo que Roblox usa para encontrar la articulación):
+// Motor6D y AnimationConstraint, la pieza que mueven (Part1); Bone, el nombre del hueso.
+export const poseName = (joint) => (PART_JOINTS.has(joint.type) ? joint.part : joint.name);
 
 // Árbol de poses (igual para todos los keyframes): raíz = rootPart.
 function poseTree(skeleton) {
   const root = { name: skeleton.rootPart, joint: null, children: [] };
   const nodeOf = new Map();
-  const extraParts = new Map(); // MeshParts contenedoras que no mueve ningún Motor6D
+  const extraParts = new Map(); // MeshParts contenedoras que no mueve ninguna articulación
   for (const j of skeleton.joints) {
     const node = { name: poseName(j), joint: j, children: [] };
     nodeOf.set(j.name, node);
     let parent;
     if (j.parentNode) parent = nodeOf.get(j.parentNode.name);
     else if (j.type === 'Bone' && j.part && j.part !== skeleton.rootPart) {
-      const owner = skeleton.joints.find((m) => m.type === 'Motor6D' && m.part === j.part);
+      const owner = skeleton.joints.find((m) => PART_JOINTS.has(m.type) && m.part === j.part);
       parent = owner ? nodeOf.get(owner.name) : null;
       if (!parent) {
         if (!extraParts.has(j.part)) {

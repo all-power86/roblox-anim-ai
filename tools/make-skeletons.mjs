@@ -54,6 +54,18 @@ save('r15.json', motorRig('R15', 'HumanoidRootPart', [
   ['LeftAnkle', 'LeftKnee', 'LeftFoot', [-0.5, H - 2.4, 0], [1, 0.3, 1.2], [0, -0.15, -0.1]],
 ]));
 
+// R15 nuevo de Studio: AnimationConstraint en lugar de Motor6D, cada una con su
+// BallSocketConstraint (física del ragdoll, que el programa ignora).
+{
+  const r15 = JSON.parse(fs.readFileSync(path.join(OUT, 'r15.json')));
+  const joints = [];
+  for (const j of r15.joints) {
+    joints.push({ ...j, type: 'AnimationConstraint' });
+    if (j.parent) joints.push({ name: `${j.name}BallSocket`, type: 'BallSocketConstraint', parent: j.parent, part: j.part, cframe: j.cframe });
+  }
+  save('r15-nuevo.json', { name: 'R15 nuevo (AnimationConstraint)', rootPart: r15.rootPart, joints });
+}
+
 // R6: articulaciones con los C0 girados del rig real de Roblox.
 {
   const torso = at(0, 3, 0);

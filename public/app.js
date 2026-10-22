@@ -40,6 +40,7 @@ function rebuildMotion() {
   const typeName = { biped: 'bípedo', quadruped: 'cuadrúpedo', object: 'objeto', creature: 'criatura sin patas' }[state.bodyType];
   const kinds = new Set(state.skeleton.joints.map((j) => j.type));
   $('skeleton-info').textContent = `${state.skeleton.name}: ${typeName}, ${state.skeleton.joints.length} articulaciones (${[...kinds].join(' + ')}).`
+    + (state.skeleton.ignored?.length ? ` Ignoradas (solo física, no se animan): ${state.skeleton.ignored.length} restricciones.` : '')
     + (state.warnings?.length ? ` ⚠ ${state.warnings.join(' ')}` : '');
   renderTemplateButtons();
 }

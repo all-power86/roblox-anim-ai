@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { PART_JOINTS } from './skeleton.js';
 
 // Clasificación automática de las partes de un esqueleto por su función
 // (columna, cabeza, patas, alas, cola...). Combina dos pistas:
@@ -225,7 +226,7 @@ export function classifySkeleton(skeleton) {
   let sideConflicts = 0;
 
   for (const j of skeleton.joints) {
-    const toks = [...tokens(j.name), ...(j.type === 'Motor6D' && !nameRole(tokens(j.name)) ? tokens(j.part) : [])];
+    const toks = [...tokens(j.name), ...(PART_JOINTS.has(j.type) && !nameRole(tokens(j.name)) ? tokens(j.part) : [])];
     const byName = nameRole(toks);
     const g = geo[j.name] || { limb: 'fixed', role: 'fixed' };
     const dx = j.restPos.x - skeleton.center.x;
