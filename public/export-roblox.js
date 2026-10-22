@@ -10,6 +10,7 @@
 // Cada Pose guarda en su CFrame el Transform de su Motor6D, AnimationConstraint o Bone.
 // Probado en Studio (22/10/2026): con el contenedor Folder el Editor de Animaciones carga
 // la animación del R15 y la del lobo con huesos (lista toda la jerarquía de huesos).
+// Probado también con un R15 nuevo con AnimationConstraint: se reproduce bien.
 
 import * as THREE from 'three';
 import { bakeAnimation } from './animation.js';

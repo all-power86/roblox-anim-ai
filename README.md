@@ -47,6 +47,10 @@ En `docs/ejemplos/` hay archivos listos para probar sin arrancar la web.
 
 ### A. Personaje R15 o R6
 
+Sirve tanto para los R15 con Motor6D como para los R15 nuevos de Studio con AnimationConstraint
+(**probado en Studio, 22/10/2026:** la KeyframeSequence se reproduce bien y los Transform de Waist,
+RightHip y LeftKnee siguen los ángulos esperados).
+
 1. Abre un sitio vacío en Studio.
 2. **Avatar → Rig Builder → R15** (o R6) **→ Block Rig**. Aparece un muñeco llamado "Rig".
 3. Clic derecho sobre el muñeco en el Explorador → **Insert from File…** → elige `R15-Caminar-Folder.rbxmx`.
@@ -105,9 +109,8 @@ Falta ver la reproducción con Play para juzgar cómo se mueve.
   [docs/prueba-ia](docs/prueba-ia/). Revisadas en Studio pose a pose: el R15 bien; el lobo levantaba la cabeza al morder
   y apenas se lanzaba hacia delante. Ya está corregido (la IA no podía mover el cuerpo y ahora la revisión detecta
   los dos fallos), pero falta repetir la prueba real.
-- **R15 nuevo con AnimationConstraint: sin probar en Studio.** El `.rbxmx` es idéntico al del R15 con Motor6D,
-  porque las poses llevan el nombre de la pieza que mueve cada articulación. Todavía no hay un script de Studio
-  que lea el rig y genere el JSON del esqueleto: hay que escribirlo a mano o usar `r15-nuevo.json`.
+- Todavía no hay un script de Studio que lea el rig y genere el JSON del esqueleto: hay que escribirlo a mano
+  o usar uno de prueba (`r15-nuevo.json` para los R15 nuevos con AnimationConstraint).
 - El modelo debe mirar hacia -Z en el esqueleto (el futuro plugin lo normalizará).
 - Los ángulos son relativos a la pose de reposo. Las plantillas suponen brazos caídos; en un modelo en pose "T"
   los brazos quedarán más abiertos.
