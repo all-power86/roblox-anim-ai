@@ -49,22 +49,26 @@ En `docs/ejemplos/` hay archivos listos para probar sin arrancar la web.
 1. Abre un sitio vacío en Studio.
 2. **Avatar → Rig Builder → R15** (o R6) **→ Block Rig**. Aparece un muñeco llamado "Rig".
 3. Clic derecho sobre el muñeco en el Explorador → **Insert from File…** → elige `R15-Caminar-Folder.rbxmx`.
-4. **Avatar → Animation Editor**, haz clic en el muñeco y abre el menú **⋯ → Load**.
-5. ¿Aparece la animación "Caminar" en la lista?
-   - **Sí:** cárgala y dale a reproducir. El contenedor correcto es "Folder".
-   - **No:** borra la carpeta `AnimSaves` insertada y repite el paso 3 con `R15-Caminar-ObjectValue.rbxmx`.
-   - **Sigue sin aparecer:** inserta `R15-Caminar-SoloKeyframeSequence.rbxmx` dentro del muñeco, selecciona el muñeco,
-     abre **View → Command Bar**, pega el contenido de [`tools/studio/colocar-animacion.lua`](tools/studio/colocar-animacion.lua)
-     y pulsa Enter. Vuelve a mirar en **Load**.
-6. Apunta qué opción funcionó: es la que hay que dejar por defecto en la web (desplegable "Contenedor").
+4. **Avatar → Animation Editor**, haz clic en el muñeco.
+5. Studio muestra el aviso **"Migrar clips de animación"**: marca **Migrar** y acepta. Es normal en las versiones
+   nuevas de Studio (mueve la animación a `ServerStorage › RBX_ANIMSAVES`).
+6. Abre el menú **⋯ → Load** y elige "Caminar". Pulsa Play para verla.
+
+**Probado en Studio (22/10/2026):** el contenedor **Folder** funciona (es el que usa la web por defecto).
+Si en alguna versión de Studio no apareciera, prueba `R15-Caminar-ObjectValue.rbxmx`, o inserta
+`R15-Caminar-SoloKeyframeSequence.rbxmx`, selecciona el muñeco, abre **View → Command Bar**, pega
+[`tools/studio/colocar-animacion.lua`](tools/studio/colocar-animacion.lua) y pulsa Enter.
 
 ### B. Criatura con huesos (Bone)
 
 1. Clic derecho en **Workspace** → **Insert from File…** → `Modelo-Lobo-huesos.rbxmx`.
    Es un modelo de prueba solo con huesos (sin malla visible); si no ves los huesos, selecciónalos en el Explorador.
-2. Inserta `Lobo-Caminar-Folder.rbxmx` dentro del modelo "Lobo" y sigue los pasos 4–5 de arriba.
+2. Inserta `Lobo-Caminar-Folder.rbxmx` dentro del modelo "Lobo" y sigue los pasos 4–6 de arriba.
 3. Al reproducir, los huesos deben moverse con las patas alternándose.
-   Si la animación carga pero los huesos no se mueven, el anidado de poses de huesos no es el que Roblox espera: avísame.
+
+**Probado en Studio (22/10/2026):** el Editor de Animaciones carga la animación del lobo y lista toda la
+jerarquía de huesos (`Hips`, `Spine1`, `Chest`, `HindLeg_L_1`…) con sus fotogramas.
+Falta ver la reproducción con Play para juzgar cómo se mueve.
 4. Lo mismo con `Modelo-Dragon-huesos.rbxmx` y `Dragon-Atacar-Folder.rbxmx`.
 
 ## Pruebas automáticas
@@ -96,8 +100,8 @@ En `docs/ejemplos/` hay archivos listos para probar sin arrancar la web.
 
 - **Sin probar con la IA real:** el flujo de IA se ha probado con una IA simulada. La calidad de lo que genera
   Claude está por medir con una clave.
-- **Pendiente de verificar en Studio:** qué contenedor reconoce el Editor de Animaciones, y si las poses de huesos
-  (Bone) están anidadas como Roblox espera.
+- **Falta mirar en Studio la reproducción** (Play): ya está comprobado que el Editor de Animaciones carga
+  el R15 (contenedor Folder) y el lobo con huesos, pero no cómo se ven moviéndose.
 - El modelo debe mirar hacia -Z en el esqueleto (el futuro plugin lo normalizará).
 - Los ángulos son relativos a la pose de reposo. Las plantillas suponen brazos caídos; en un modelo en pose "T"
   los brazos quedarán más abiertos.

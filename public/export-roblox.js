@@ -8,13 +8,14 @@
 //                     └ Pose <Bone>        Bone: la pose lleva el nombre del hueso
 //
 // Cada Pose guarda en su CFrame el Transform de su Motor6D o Bone.
-// Pendiente de verificar en Studio: el anidado de poses de huesos (Bone) bajo la MeshPart.
+// Probado en Studio (22/10/2026): con el contenedor Folder el Editor de Animaciones carga
+// la animación del R15 y la del lobo con huesos (lista toda la jerarquía de huesos).
 
 import * as THREE from 'three';
 import { bakeAnimation } from './animation.js';
 
 export const CONTAINERS = {
-  Folder: 'Carpeta (Folder) "AnimSaves"',
+  Folder: 'Carpeta (Folder) "AnimSaves" — recomendado, probado en Studio',
   ObjectValue: 'ObjectValue "AnimSaves"',
   none: 'Sin contenedor (solo la KeyframeSequence)',
 };
