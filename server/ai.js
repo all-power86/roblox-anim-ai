@@ -60,6 +60,8 @@ CALIDAD
 - Parte de la plantilla base que se te da: ya está adaptada a este esqueleto y es físicamente correcta. Modifícala para cumplir la descripción (ritmo, amplitud, actitud, partes extra) en lugar de empezar de cero.
 - Principios de animación: anticipación antes de un gesto fuerte, seguimiento y asentamiento después, movimientos secundarios (cabeza, cola, alas, el otro brazo), arcos naturales, peso coherente con el tamaño (las criaturas grandes se mueven más despacio).
 - Evita que las extremidades atraviesen el cuerpo o entre sí, y que los pies patinen cuando deben estar quietos.
+- Ataques: el cuerpo se echa atrás en la anticipación (root.forward negativo) y se lanza hacia delante al golpear (root.forward positivo, al menos un cuarto de la altura de cadera respecto a la anticipación). Las patas apoyadas se ajustan solas para que no patinen.
+- Mordiscos: en el momento de morder la cabeza se lanza hacia delante y abajo (cuello y cabeza con bend positivo) y el hocico mira al frente o un poco abajo. Si la cabeza se levanta al morder parece un aullido.
 - Si es un bucle, el último keyframe debe ser igual al primero.`;
 
 function skeletonTable(skeleton, motion, roles) {

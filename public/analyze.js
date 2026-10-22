@@ -4,11 +4,13 @@
 //  - cuerpo que atraviesa el suelo o flota
 //  - pies que patinan
 //  - ritmo: bucle que no cierra, movimientos demasiado bruscos, animación casi quieta
+//  - ataques: el cuerpo debe lanzarse hacia delante y, al morder, la cabeza ir hacia
+//    delante y abajo (no hacia arriba, que parece un aullido)
 // El resultado se muestra en la web y se le pasa a la IA en la autorrevisión.
 
 import * as THREE from 'three';
 import { forwardKinematics } from './skeleton.js';
-import { bakeAnimation, sampleBaked, lowestPoint } from './animation.js';
+import { bakeAnimation, sampleBaked, lowestPoint, legChain } from './animation.js';
 
 const FPS = 30;
 const LOCOMOTION = new Set(['walk', 'run']);
@@ -219,5 +221,75 @@ export function analyzeAnimation(anim, skeleton, motion, opts = {}) {
     issues.push({ type: 'quieto', severity: 'media', message: 'La animación apenas se mueve.' });
   }
 
+  if (templateId === 'attack') issues.push(...attackIssues(anim, skeleton, motion, baked, times, L, opts.prompt));
+
   return { issues, stats: { frames: nFrames + 1, maxTurnSpeed: Math.round(maxSpeed.value), legLength: L } };
+}
+
+const FORWARD = new THREE.Vector3(0, 0, -1); // el personaje mira hacia -Z
+const BITE_WORDS = /mord|muerd|bite|dentellada/i;
+
+// Ataques: ¿se lanza el cuerpo hacia delante? ¿muerde con la cabeza hacia delante y abajo?
+function attackIssues(anim, skeleton, motion, baked, times, L, prompt) {
+  const issues = [];
+  const roleOf = (n) => motion.joints[n]?.role;
+  const rootName = motion.rootJoint;
+  const head = skeleton.joints.find((j) => roleOf(j.name) === 'head');
+  const jaw = skeleton.joints.find((j) => roleOf(j.name) === 'jaw');
+  const samples = times.map((t) => {
+    const pose = sampleBaked(baked, t);
+    const fk = forwardKinematics(skeleton, pose);
+    const s = { t, root: new THREE.Vector3().setFromMatrixPosition(fk[rootName]) };
+    if (head) {
+      s.head = new THREE.Vector3().setFromMatrixPosition(fk[head.name]);
+      const rot = new THREE.Quaternion().setFromRotationMatrix(fk[head.name]).multiply(head.restRot.clone().invert());
+      s.pitch = Math.asin(THREE.MathUtils.clamp(FORWARD.clone().applyQuaternion(rot).y, -1, 1)) * (180 / Math.PI); // + = mira arriba
+    }
+    if (jaw) { const q = pose.rot[jaw.name]; s.jaw = q ? (2 * Math.acos(Math.min(1, Math.abs(q.w)))) * (180 / Math.PI) : 0; }
+    return s;
+  });
+
+  // Momento del golpe: máxima apertura de la boca o, si no muerde, cuando más avanza el cuerpo.
+  const maxJaw = jaw ? Math.max(...samples.map((s) => s.jaw)) : 0;
+  const bites = Boolean(head) && (maxJaw >= 10 || BITE_WORDS.test(prompt || ''));
+  const strike = maxJaw >= 10 && head
+    ? samples.reduce((a, b) => (b.jaw > a.jaw ? b : a))
+    : bites ? samples.reduce((a, b) => (b.head.z < a.head.z ? b : a))
+      : samples.reduce((a, b) => (b.root.z < a.root.z ? b : a));
+
+  // 1) Embestida: lo que avanza el cuerpo en el empujón que termina en el golpe (desde el
+  //    punto más retrasado justo antes). Avanzar durante la anticipación no cuenta.
+  const push = (i) => {
+    let j = i;
+    while (j > 0 && samples[j - 1].root.z >= samples[j].root.z - 1e-4) j--;
+    return { adv: samples[j].root.z - samples[i].root.z, from: samples[j].t, to: samples[i].t };
+  };
+  let lunge = { adv: 0, from: strike.t, to: strike.t };
+  samples.forEach((s, i) => {
+    if (s.t < strike.t - 0.05 || s.t > strike.t + 0.08) return;
+    const p = push(i);
+    if (p.adv > lunge.adv) lunge = p;
+  });
+  const minLunge = 0.25 * L;
+  // Con patas sin rodilla (R6) el cuerpo no puede avanzar sin que los pies patinen.
+  const canLunge = skeleton.joints.some((j) => legChain(j, motion).length >= 2);
+  if (canLunge && lunge.adv < minLunge) {
+    issues.push({ type: 'no_avanza', severity: 'media', message: `En el golpe (t=${strike.t.toFixed(2)} s) el cuerpo apenas se lanza hacia delante (${lunge.adv.toFixed(2)} studs). Un ataque debe echarse atrás en la anticipación (root.forward negativo) y lanzarse hacia delante al golpear: al menos ${minLunge.toFixed(2)} studs desde la anticipación.` });
+  }
+
+  // 2) Mordisco: la cabeza debe ir hacia delante y abajo, no levantarse.
+  if (!bites) return issues;
+  const wind = samples.filter((s) => s.t >= strike.t - 0.2 && s.t <= strike.t);
+  const lowPitch = Math.min(...wind.map((s) => s.pitch));
+  const start = wind[0];
+  const rise = strike.head.y - start.head.y;
+  const ahead = start.head.z - strike.head.z;
+  const problems = [];
+  if (strike.pitch > 10) problems.push(`el hocico apunta ${Math.round(strike.pitch)}° hacia arriba`);
+  else if (strike.pitch - lowPitch > 15) problems.push(`la cabeza se levanta ${Math.round(strike.pitch - lowPitch)}° justo al morder`);
+  if (rise > 0.05 * L && rise > Math.max(ahead, 0)) problems.push(`sube ${rise.toFixed(2)} studs y avanza solo ${Math.max(ahead, 0).toFixed(2)}`);
+  if (problems.length) {
+    issues.push({ type: 'mordisco_arriba', severity: 'alta', message: `En el mordisco (t=${strike.t.toFixed(2)} s) ${problems.join(' y ')}: parece un aullido. Al morder, la cabeza debe lanzarse hacia delante y abajo (cuello y cabeza con bend positivo) y el hocico mirar al frente o un poco abajo.` });
+  }
+  return issues;
 }

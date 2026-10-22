@@ -38,4 +38,23 @@ for (const f of fs.readdirSync(dir)) {
   }
   console.log('fallos provocados detectados:', [...types].join(', '));
 }
+// Mordisco real de la IA (docs/prueba-ia): en Studio levantaba la cabeza como un aullido y el
+// cuerpo apenas se lanzaba hacia delante. La revisión debe detectar las dos cosas.
+{
+  const { sk, motion, ctx } = load('lobo.json');
+  const real = JSON.parse(fs.readFileSync(new URL('../docs/prueba-ia/lobo-atacar-mordiendo.json', import.meta.url)));
+  const types = new Set(analyzeAnimation(real, sk, motion, { legLength: ctx.legLength, prompt: 'atacar mordiendo con rabia' }).issues.map((i) => i.type));
+  for (const want of ['mordisco_arriba', 'no_avanza']) {
+    if (!types.has(want)) { fails++; console.log('FALLO: no se detectó', want, 'en el mordisco del lobo'); }
+  }
+  console.log('mordisco del lobo:', [...types].join(', '));
+}
+// Las plantillas de ataque no deben tener esos fallos.
+for (const f of fs.readdirSync(dir)) {
+  const { sk, motion, ctx } = load(f);
+  const anim = buildTemplate('attack', ctx);
+  if (!anim) continue;
+  const bad = analyzeAnimation(anim, sk, motion, { legLength: ctx.legLength, prompt: 'atacar mordiendo' }).issues.filter((i) => ['mordisco_arriba', 'no_avanza'].includes(i.type));
+  if (bad.length) { fails++; console.log('FALLO: plantilla de ataque de', f, bad.map((i) => i.message).join(' | ')); }
+}
 process.exit(fails ? 1 : 0);

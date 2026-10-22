@@ -159,7 +159,7 @@ function footJoints(skeleton, motion) {
 }
 
 // Tramos de la pata que se pueden ajustar: cadera (leg.upper) y rodilla (leg.lower).
-function legChain(foot, motion) {
+export function legChain(foot, motion) {
   const chain = [];
   for (let j = foot.parentNode; j; j = j.parentNode) {
     const r = motion.joints[j.name]?.role;

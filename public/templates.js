@@ -280,9 +280,9 @@ const BIPED = {
     const guard = { spineBend: 5, twist: 0, rArm: [35, 12, 0, 95], lArm: [45, 10, 100], lLeg: [15, 15, -5], rLeg: [-5, 15, 5] };
     return { loop: false, duration: 1.3 * k, keyframes: [
       frame(0, 'Cubic', guard),
-      frame(0.35, 'Cubic', { spineBend: 0, twist: 28, rArm: [-35, 35, 0, 120], lArm: [55, 15, 95], lLeg: [10, 20, -5], rLeg: [-5, 20, 5], tail: 10, wings: true }),
-      frame(0.5, 'Linear', { spineBend: 12, twist: -32, rArm: [92, 8, 0, 4], lArm: [-15, 12, 100], lLeg: [30, 25, -10], rLeg: [-22, 10, 18], forward: 0.12, tail: -15, wings: true }),
-      frame(0.72, 'Cubic', { spineBend: 12, twist: -30, rArm: [88, 10, 0, 8], lArm: [-12, 12, 95], lLeg: [30, 25, -10], rLeg: [-22, 10, 18], forward: 0.12, tail: -10 }),
+      frame(0.35, 'Cubic', { spineBend: 0, twist: 28, rArm: [-35, 35, 0, 120], lArm: [55, 15, 95], lLeg: [10, 20, -5], rLeg: [-5, 20, 5], forward: -0.08, tail: 10, wings: true }),
+      frame(0.5, 'Linear', { spineBend: 12, twist: -32, rArm: [92, 8, 0, 4], lArm: [-15, 12, 100], lLeg: [30, 25, -10], rLeg: [-22, 10, 18], forward: 0.22, tail: -15, wings: true }),
+      frame(0.72, 'Cubic', { spineBend: 12, twist: -30, rArm: [88, 10, 0, 8], lArm: [-12, 12, 95], lLeg: [30, 25, -10], rLeg: [-22, 10, 18], forward: 0.22, tail: -10 }),
       frame(1.3, 'Cubic', guard),
     ] };
   },
@@ -418,8 +418,9 @@ const QUAD = {
     return { loop: false, duration: 1.4 * k, keyframes: [
       frame(0, 'Cubic', stand),
       frame(0.4, 'Cubic', { front: [-10, 35, 25], hind: [35, 60, 45], spine: 6, neck: 18, head: 5, jaw: 5, forward: -0.15, pitch: -4, tail: 10, wings: 25 }),
-      frame(0.58, 'Linear', { front: [45, 20, 10], hind: [-25, 10, 5], spine: -6, neck: -18, head: -10, jaw: 38, forward: 0.4, pitch: 4, tail: -5, whip: 18, wings: 55 }),
-      frame(0.72, 'Cubic', { front: [40, 25, 15], hind: [-20, 15, 10], spine: -4, neck: -8, head: 12, jaw: 0, forward: 0.4, pitch: 6, tail: -5, whip: -15, wings: 45 }),
+      // Mordisco: la cabeza se lanza hacia delante y abajo (no hacia arriba, parecería un aullido).
+      frame(0.58, 'Linear', { front: [45, 20, 10], hind: [-25, 10, 5], spine: -6, neck: 14, head: 4, jaw: 38, forward: 0.4, pitch: 4, tail: -5, whip: 18, wings: 55 }),
+      frame(0.72, 'Cubic', { front: [40, 25, 15], hind: [-20, 15, 10], spine: -4, neck: 16, head: 10, jaw: 0, forward: 0.4, pitch: 6, tail: -5, whip: -15, wings: 45 }),
       frame(1.4, 'Cubic', stand),
     ] };
   },

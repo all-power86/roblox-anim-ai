@@ -107,7 +107,7 @@ function setAnimation(anim, { keepLog = false } = {}) {
   $('timeline').max = anim.duration;
   $('anim-name').textContent = `${anim.name} · ${anim.duration.toFixed(2)} s${anim.loop ? ' · bucle' : ''} · ${anim.keyframes.length} keyframes`;
   if (!keepLog) { state.log = []; renderLog(); }
-  renderIssues(analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength }).issues);
+  renderIssues(analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength, prompt: $('prompt').value }).issues);
 }
 
 function loadTemplate(id) {
@@ -205,7 +205,7 @@ $('generate').onclick = async () => {
 
     if ($('self-review').checked) {
       for (let round = 1; round <= MAX_REVIEW_ROUNDS; round++) {
-        const { issues } = analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength });
+        const { issues } = analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength, prompt: $('prompt').value });
         const image = sheetImage(anim);
         setStatus(`Autorrevisión ${round}/${MAX_REVIEW_ROUNDS}: la IA está mirando las capturas…`);
         const rev = await api('/api/review', { ...base, animation: anim, image, issues, iteration: round });
