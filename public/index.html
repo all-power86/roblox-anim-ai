@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animador IA para Roblox</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": {
+        "three": "/vendor/three/build/three.module.js",
+        "three/addons/": "/vendor/three/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+  <aside class="panel">
+    <h1>Animador IA <span>R15</span></h1>
+
+    <label for="prompt">Describe la animación</label>
+    <textarea id="prompt" rows="3" placeholder="Ej.: saludar con la mano">saludar con la mano</textarea>
+    <button id="generate" class="primary">Generar con IA</button>
+    <p id="status" class="status"></p>
+
+    <div class="presets">
+      <span>Demos sin IA:</span>
+      <button data-preset="saludar">Saludar</button>
+      <button data-preset="saltar">Saltar</button>
+      <button data-preset="bailar">Bailar</button>
+    </div>
+
+    <div class="player">
+      <button id="play" title="Reproducir / pausa">⏸</button>
+      <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" aria-label="Línea de tiempo">
+      <span id="time">0.00 s</span>
+    </div>
+    <label class="speed">Velocidad
+      <select id="speed">
+        <option value="0.25">0.25×</option>
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="2">2×</option>
+      </select>
+    </label>
+
+    <h2 id="anim-name">—</h2>
+    <ol id="keyframes" class="keyframes"></ol>
+    <button id="download">Descargar keyframes (JSON)</button>
+  </aside>
+
+  <main id="viewer"></main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
