@@ -1,0 +1,46 @@
+{
+ "format": "roblox-anim-ai/skeleton@1",
+ "name": "Puerta",
+ "rootPart": "Marco",
+ "joints": [
+  {
+   "name": "Bisagra",
+   "type": "Motor6D",
+   "parent": null,
+   "part": "Hoja",
+   "cframe": [
+    -2,
+    3.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    4,
+    7,
+    0.3
+   ],
+   "partCFrame": [
+    0,
+    3.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  }
+ ]
+}

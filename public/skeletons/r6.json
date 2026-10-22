@@ -1,0 +1,241 @@
+{
+ "format": "roblox-anim-ai/skeleton@1",
+ "name": "R6",
+ "rootPart": "HumanoidRootPart",
+ "joints": [
+  {
+   "name": "RootJoint",
+   "type": "Motor6D",
+   "parent": null,
+   "part": "Torso",
+   "cframe": [
+    0,
+    3,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ],
+   "partSize": [
+    2,
+    2,
+    1
+   ],
+   "partCFrame": [
+    0,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Neck",
+   "type": "Motor6D",
+   "parent": "RootJoint",
+   "part": "Head",
+   "cframe": [
+    0,
+    4,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+   ],
+   "partSize": [
+    2,
+    1,
+    1
+   ],
+   "partCFrame": [
+    0,
+    4.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Right Shoulder",
+   "type": "Motor6D",
+   "parent": "RootJoint",
+   "part": "Right Arm",
+   "cframe": [
+    1,
+    3.5,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    -1,
+    0,
+    0
+   ],
+   "partSize": [
+    1,
+    2,
+    1
+   ],
+   "partCFrame": [
+    1.5,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Left Shoulder",
+   "type": "Motor6D",
+   "parent": "RootJoint",
+   "part": "Left Arm",
+   "cframe": [
+    -1,
+    3.5,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "partSize": [
+    1,
+    2,
+    1
+   ],
+   "partCFrame": [
+    -1.5,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Right Hip",
+   "type": "Motor6D",
+   "parent": "RootJoint",
+   "part": "Right Leg",
+   "cframe": [
+    1,
+    2,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    -1,
+    0,
+    0
+   ],
+   "partSize": [
+    1,
+    2,
+    1
+   ],
+   "partCFrame": [
+    0.5,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Left Hip",
+   "type": "Motor6D",
+   "parent": "RootJoint",
+   "part": "Left Leg",
+   "cframe": [
+    -1,
+    2,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "partSize": [
+    1,
+    2,
+    1
+   ],
+   "partCFrame": [
+    -0.5,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  }
+ ]
+}

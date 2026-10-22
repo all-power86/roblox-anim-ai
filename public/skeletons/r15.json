@@ -1,0 +1,592 @@
+{
+ "format": "roblox-anim-ai/skeleton@1",
+ "name": "R15",
+ "rootPart": "HumanoidRootPart",
+ "joints": [
+  {
+   "name": "Root",
+   "type": "Motor6D",
+   "parent": null,
+   "part": "LowerTorso",
+   "cframe": [
+    0,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    2,
+    0.4,
+    1
+   ],
+   "partCFrame": [
+    0,
+    2.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Waist",
+   "type": "Motor6D",
+   "parent": "Root",
+   "part": "UpperTorso",
+   "cframe": [
+    0,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    2,
+    1.6,
+    1
+   ],
+   "partCFrame": [
+    0,
+    3.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Neck",
+   "type": "Motor6D",
+   "parent": "Waist",
+   "part": "Head",
+   "cframe": [
+    0,
+    4.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "partCFrame": [
+    0,
+    5.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightShoulder",
+   "type": "Motor6D",
+   "parent": "Waist",
+   "part": "RightUpperArm",
+   "cframe": [
+    1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.1,
+    1
+   ],
+   "partCFrame": [
+    1.5,
+    4.15,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightElbow",
+   "type": "Motor6D",
+   "parent": "RightShoulder",
+   "part": "RightLowerArm",
+   "cframe": [
+    1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1,
+    0.95
+   ],
+   "partCFrame": [
+    1.5,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightWrist",
+   "type": "Motor6D",
+   "parent": "RightElbow",
+   "part": "RightHand",
+   "cframe": [
+    1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.9,
+    0.4,
+    0.9
+   ],
+   "partCFrame": [
+    1.5,
+    2.4,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftShoulder",
+   "type": "Motor6D",
+   "parent": "Waist",
+   "part": "LeftUpperArm",
+   "cframe": [
+    -1.5,
+    4.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.1,
+    1
+   ],
+   "partCFrame": [
+    -1.5,
+    4.15,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftElbow",
+   "type": "Motor6D",
+   "parent": "LeftShoulder",
+   "part": "LeftLowerArm",
+   "cframe": [
+    -1.5,
+    3.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1,
+    0.95
+   ],
+   "partCFrame": [
+    -1.5,
+    3.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftWrist",
+   "type": "Motor6D",
+   "parent": "LeftElbow",
+   "part": "LeftHand",
+   "cframe": [
+    -1.5,
+    2.6,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.9,
+    0.4,
+    0.9
+   ],
+   "partCFrame": [
+    -1.5,
+    2.4,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightHip",
+   "type": "Motor6D",
+   "parent": "Root",
+   "part": "RightUpperLeg",
+   "cframe": [
+    0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.2,
+    1
+   ],
+   "partCFrame": [
+    0.5,
+    2.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightKnee",
+   "type": "Motor6D",
+   "parent": "RightHip",
+   "part": "RightLowerLeg",
+   "cframe": [
+    0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1.2,
+    0.95
+   ],
+   "partCFrame": [
+    0.5,
+    0.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "RightAnkle",
+   "type": "Motor6D",
+   "parent": "RightKnee",
+   "part": "RightFoot",
+   "cframe": [
+    0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    0.3,
+    1.2
+   ],
+   "partCFrame": [
+    0.5,
+    0.15,
+    -0.1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftHip",
+   "type": "Motor6D",
+   "parent": "Root",
+   "part": "LeftUpperLeg",
+   "cframe": [
+    -0.5,
+    2.7,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    1.2,
+    1
+   ],
+   "partCFrame": [
+    -0.5,
+    2.1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftKnee",
+   "type": "Motor6D",
+   "parent": "LeftHip",
+   "part": "LeftLowerLeg",
+   "cframe": [
+    -0.5,
+    1.5,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    0.95,
+    1.2,
+    0.95
+   ],
+   "partCFrame": [
+    -0.5,
+    0.9,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "LeftAnkle",
+   "type": "Motor6D",
+   "parent": "LeftKnee",
+   "part": "LeftFoot",
+   "cframe": [
+    -0.5,
+    0.3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "partSize": [
+    1,
+    0.3,
+    1.2
+   ],
+   "partCFrame": [
+    -0.5,
+    0.15,
+    -0.1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ]
+  }
+ ]
+}
