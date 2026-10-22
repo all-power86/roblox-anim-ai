@@ -1,0 +1,43 @@
+{
+ "modelo": "claude-opus-5-5",
+ "fecha": "2026-10-22T20:34:06.207Z",
+ "resumen": [
+  {
+   "esqueleto": "r15",
+   "descripcion": "caminar cansado, arrastrando un poco los pies",
+   "estado": "¡Lista! (100 s)",
+   "segundos": 100,
+   "llamadas": 3,
+   "tokensEntrada": 34118,
+   "tokensSalida": 12386,
+   "costeUSD": 0.384,
+   "registro": [
+    "Generada (plantilla base: walk)",
+    "Ronda 1: corregida\nFallos automáticos: ninguno • Los keyframes intermedios (0.281, 0.656, 1.031, 1.406) tienen grounded=false sin lift. Al caminar siempre hay un pie apoyado, así que el cuerpo puede flotar o dar saltitos. • El pie que avanza se levanta demasiado (rodilla a 36° en el paso). No se percibe que arrastre los pies. Cambios: Todos los keyframes pasan a grounded=true con lift=0. Bajo la flexión de rodilla del pie en el aire (36→26 y 32→24) y aplano el tobillo para que el pie pase rozando el suelo. También reduzco un poco el rebote vertical del root para dar más sensación de peso.",
+    "Ronda 2: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "lobo",
+   "descripcion": "atacar mordiendo con rabia",
+   "estado": "¡Lista! (204 s)",
+   "segundos": 204,
+   "llamadas": 4,
+   "tokensEntrada": 64459,
+   "tokensSalida": 26452,
+   "costeUSD": 0.787,
+   "registro": [
+    "Generada (plantilla base: attack)",
+    "Ronda 1: corregida\nFallos automáticos: ninguno • root.forward pasa de -0.17 a +1.22 y luego a -0.72 (casi 2 studs) mientras las patas siguen apoyadas, así que los pies patinan mucho. • La anticipación va al revés. El cuerpo avanza en la preparación y retrocede en el mordisco, cuando el lunge debería ir hacia delante con las patas traseras empujando. • Varios keyframes intermedios tienen grounded=false sin lift aunque las patas están en el suelo, lo que puede hacer flotar o hundirse al lobo. • Sobran keyframes intermedios interpolados que diluyen el contraste entre la preparación lenta y el mordisco rápido. Además falta un gruñido con la boca entreabierta en la anticipación para transmitir rabia. Cambios: Anticipación hacia atrás (forward -0.3) agachado, con la cabeza baja y gruñendo con la boca entreabierta. Lunge hacia delante (+0.5) con la boca abierta al máximo en 0.36 y cierre en 0.42, seguido de sacudidas de cabeza y una vuelta suave. Elimino los keyframes intermedios redundantes, pongo todos los keyframes con grounded=true y reduzco el desplazamiento total para que los pies no patinen.",
+    "Ronda 2: corregida\nFallos automáticos: ninguno • El desplazamiento del root va al revés: en la anticipación (0.22 s) el cuerpo avanza 1.3 studs y en la mordida (0.36 s) retrocede a -0.71. La embestida pierde toda la fuerza. • El root recorre más de 2 studs adelante y atrás con las patas apoyadas, y durante la sacudida se desplaza ±0.44 studs a los lados. Las patas resbalan claramente. • Seis keyframes intermedios tienen grounded=false sin lift mientras las patas siguen apoyadas, así que hay riesgo de que floten o se hundan. • Hay demasiados keyframes interpolados a mano entre la anticipación y la mordida, y el impacto queda blando. Cambios: Invierto el desplazamiento: el lobo se agacha y retrocede en la anticipación, y embiste hacia delante abriendo la boca a tope. Cierra de golpe en 0.42 s y sacude la presa. Reduzco el recorrido del root y quito el desplazamiento lateral de la sacudida para que no patinen las patas. Pongo grounded=true en todos los keyframes y elimino los intermedios sobrantes.",
+    "Ronda 3: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  }
+ ]
+}

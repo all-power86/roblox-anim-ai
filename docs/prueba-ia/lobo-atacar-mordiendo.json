@@ -1,0 +1,1587 @@
+{
+ "name": "Mordisco rabioso",
+ "duration": 1.45,
+ "loop": false,
+ "keyframes": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": -0.037,
+    "forward": -0.314,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 2.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 2.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 4.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 4.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.167,
+   "easing": "Cubic",
+   "root": {
+    "right": 0,
+    "up": 0.112,
+    "forward": 0.51,
+    "bend": -2.556,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 13.111,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 24.222,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 13.926,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 13.111,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 24.222,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 13.926,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": 28.593,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 47.519,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 34.37,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": 28.593,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 47.519,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 34.37,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 4.259,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 4.259,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 5.111,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 23.852,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": -11.926,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 10.222,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 15.333,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 6.815,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 3.407,
+     "side": 0,
+     "twist": 0
+    }
+   ],
+   "grounded": false
+  },
+  {
+   "time": 0.25,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.098,
+    "forward": 0.656,
+    "bend": -3,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 28,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 28,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": 32,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": 32,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 28,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": -14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 4,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.36,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.202,
+    "forward": 0.355,
+    "bend": 6,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": -4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": -4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": -2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": -2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": -18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.42,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.264,
+    "forward": 0.678,
+    "bend": 8,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": -1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": -1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": -1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 22,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.52,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.43,
+    "up": 0.282,
+    "forward": 0.633,
+    "bend": 6,
+    "side": 0,
+    "twist": 3
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": -2.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 14.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 0,
+     "side": -5,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 0,
+     "side": -3,
+     "twist": 4
+    },
+    {
+     "joint": "Chest",
+     "bend": 0,
+     "side": 0,
+     "twist": 8
+    },
+    {
+     "joint": "Neck",
+     "bend": 25,
+     "side": 10,
+     "twist": 15
+    },
+    {
+     "joint": "Head",
+     "bend": 15,
+     "side": 15,
+     "twist": 25
+    },
+    {
+     "joint": "Jaw",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 15,
+     "side": -15,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": -20,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": -5,
+     "side": -25,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.62,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0.43,
+    "up": 0.282,
+    "forward": 0.633,
+    "bend": 6,
+    "side": 0,
+    "twist": -3
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": -2.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 14.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -16,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 0,
+     "side": 5,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 0,
+     "side": 3,
+     "twist": -4
+    },
+    {
+     "joint": "Chest",
+     "bend": 0,
+     "side": 0,
+     "twist": -8
+    },
+    {
+     "joint": "Neck",
+     "bend": 25,
+     "side": -10,
+     "twist": -15
+    },
+    {
+     "joint": "Head",
+     "bend": 15,
+     "side": -15,
+     "twist": -25
+    },
+    {
+     "joint": "Jaw",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 15,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": 20,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": -5,
+     "side": 25,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.72,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.238,
+    "up": 0.237,
+    "forward": 0.593,
+    "bend": 5,
+    "side": 0,
+    "twist": 2
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": -4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 12.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 13,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 14,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 0,
+     "side": -2,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 0,
+     "side": -1,
+     "twist": 2
+    },
+    {
+     "joint": "Chest",
+     "bend": 0,
+     "side": 0,
+     "twist": 4
+    },
+    {
+     "joint": "Neck",
+     "bend": 22,
+     "side": 5,
+     "twist": 8
+    },
+    {
+     "joint": "Head",
+     "bend": 12,
+     "side": 8,
+     "twist": 12
+    },
+    {
+     "joint": "Jaw",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 15,
+     "side": -8,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": -10,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": -5,
+     "side": -12,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.92,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.042,
+    "forward": 0.209,
+    "bend": -2,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.15,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.009,
+    "forward": -0.033,
+    "bend": -1,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": 0.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": 0.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.45,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": -0.003,
+    "forward": -0.112,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "FrontLeg_L_1",
+     "bend": 4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_L_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_1",
+     "bend": 4,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "FrontLeg_R_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_1",
+     "bend": 3.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_L_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_1",
+     "bend": 3.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_2",
+     "bend": 1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HindLeg_R_3",
+     "bend": 2,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine1",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Spine2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Chest",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Head",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Jaw",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail1",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail2",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Tail3",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "template": "attack",
+ "reviewLog": [
+  {
+   "title": "Generada (plantilla base: attack)",
+   "text": ""
+  },
+  {
+   "title": "Ronda 1: corregida",
+   "text": "Fallos automáticos: ninguno\n• root.forward pasa de -0.17 a +1.22 y luego a -0.72 (casi 2 studs) mientras las patas siguen apoyadas, así que los pies patinan mucho.\n• La anticipación va al revés. El cuerpo avanza en la preparación y retrocede en el mordisco, cuando el lunge debería ir hacia delante con las patas traseras empujando.\n• Varios keyframes intermedios tienen grounded=false sin lift aunque las patas están en el suelo, lo que puede hacer flotar o hundirse al lobo.\n• Sobran keyframes intermedios interpolados que diluyen el contraste entre la preparación lenta y el mordisco rápido. Además falta un gruñido con la boca entreabierta en la anticipación para transmitir rabia.\nCambios: Anticipación hacia atrás (forward -0.3) agachado, con la cabeza baja y gruñendo con la boca entreabierta. Lunge hacia delante (+0.5) con la boca abierta al máximo en 0.36 y cierre en 0.42, seguido de sacudidas de cabeza y una vuelta suave. Elimino los keyframes intermedios redundantes, pongo todos los keyframes con grounded=true y reduzco el desplazamiento total para que los pies no patinen."
+  },
+  {
+   "title": "Ronda 2: corregida",
+   "text": "Fallos automáticos: ninguno\n• El desplazamiento del root va al revés: en la anticipación (0.22 s) el cuerpo avanza 1.3 studs y en la mordida (0.36 s) retrocede a -0.71. La embestida pierde toda la fuerza.\n• El root recorre más de 2 studs adelante y atrás con las patas apoyadas, y durante la sacudida se desplaza ±0.44 studs a los lados. Las patas resbalan claramente.\n• Seis keyframes intermedios tienen grounded=false sin lift mientras las patas siguen apoyadas, así que hay riesgo de que floten o se hundan.\n• Hay demasiados keyframes interpolados a mano entre la anticipación y la mordida, y el impacto queda blando.\nCambios: Invierto el desplazamiento: el lobo se agacha y retrocede en la anticipación, y embiste hacia delante abriendo la boca a tope. Cierra de golpe en 0.42 s y sacude la presa. Reduzco el recorrido del root y quito el desplazamiento lateral de la sacudida para que no patinen las patas. Pongo grounded=true en todos los keyframes y elimino los intermedios sobrantes."
+  },
+  {
+   "title": "Ronda 3: aprobada",
+   "text": "Fallos automáticos: ninguno"
+  }
+ ]
+}
