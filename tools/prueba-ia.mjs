@@ -1,7 +1,7 @@
 // Prueba real con IA: maneja la web como lo haría una persona (generar + autorrevisión),
 // guarda capturas antes/después y calcula lo que ha costado cada animación.
 //
-// Uso (con el servidor arrancado con ANTHROPIC_API_KEY):
+// Uso (con el servidor arrancado con ANIM_ANTHROPIC_KEY):
 //   node tools/prueba-ia.mjs [carpeta-salida] [esqueleto:"descripción" ...]
 // Por defecto: 2 animaciones (R15 caminar cansado, lobo atacar mordiendo).
 
@@ -22,7 +22,7 @@ const LOG = 'logs/revisiones.jsonl';
 
 fs.mkdirSync(out, { recursive: true });
 const status = await (await fetch(`${base}/api/status`)).json();
-if (!status.ai) { console.error('El servidor no tiene ANTHROPIC_API_KEY: no se puede hacer la prueba real.'); process.exit(1); }
+if (!status.ai) { console.error('El servidor no tiene ANIM_ANTHROPIC_KEY: no se puede hacer la prueba real.'); process.exit(1); }
 const [pIn, pOut] = PRECIOS[status.model] || [4, 20];
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH, args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'] });

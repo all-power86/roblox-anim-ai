@@ -2,7 +2,7 @@
 //  - Sirve la web (carpeta public/) y la librería 3D (Three.js).
 //  - POST /api/generate: genera una animación con IA partiendo de una plantilla.
 //  - POST /api/review:   la IA revisa las capturas de la animación y la corrige.
-// La clave de la IA (ANTHROPIC_API_KEY) solo se lee aquí y nunca se envía al navegador.
+// La clave de la IA (ANIM_ANTHROPIC_KEY o ANTHROPIC_API_KEY) solo se lee aquí y nunca se envía al navegador.
 
 import http from 'node:http';
 import fs from 'node:fs/promises';
@@ -75,7 +75,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ai: hasKey(), model: MODEL });
     }
     if (req.method === 'POST' && (req.url === '/api/generate' || req.url === '/api/review')) {
-      if (!hasKey()) return sendJson(res, 503, { error: 'La IA no está configurada (falta ANTHROPIC_API_KEY en el servidor). Las plantillas funcionan igualmente.' });
+      if (!hasKey()) return sendJson(res, 503, { error: 'La IA no está configurada (falta ANIM_ANTHROPIC_KEY en el servidor). Las plantillas funcionan igualmente.' });
       const body = await readBody(req, req.url === '/api/review' ? 12_000_000 : 2_000_000);
       checkPayload(body);
       if (req.url === '/api/generate') {

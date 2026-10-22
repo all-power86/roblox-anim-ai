@@ -1,5 +1,6 @@
 // Llamadas a Claude: generar una animación partiendo de una plantilla y revisarla mirando
-// las capturas. La clave (ANTHROPIC_API_KEY) solo se usa aquí, en el servidor.
+// las capturas. La clave solo se usa aquí, en el servidor. Se lee de ANIM_ANTHROPIC_KEY
+// (Claude Code se reserva ANTHROPIC_API_KEY en sus sesiones) o, si no, de ANTHROPIC_API_KEY.
 
 import Anthropic from '@anthropic-ai/sdk';
 import { z } from 'zod';
@@ -10,9 +11,10 @@ import { makeContext, buildTemplate, guessTemplate, TEMPLATE_LIST } from '../pub
 import { groundFix } from '../public/animation.js';
 
 export const MODEL = process.env.ANIM_MODEL || 'claude-opus-5-5';
-export const hasKey = () => Boolean(process.env.ANTHROPIC_API_KEY);
+const apiKey = () => process.env.ANIM_ANTHROPIC_KEY || process.env.ANTHROPIC_API_KEY;
+export const hasKey = () => Boolean(apiKey());
 let client = null;
-const getClient = () => (client ||= new Anthropic());
+const getClient = () => (client ||= new Anthropic({ apiKey: apiKey() }));
 
 // ---------- Esquemas de respuesta ----------
 

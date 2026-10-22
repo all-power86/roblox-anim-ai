@@ -19,8 +19,9 @@ Capturas de las pruebas: [docs/capturas](docs/capturas/README.md).
 2. En esta carpeta, ejecuta una vez: `npm install`
 3. Arranca:
    - Solo plantillas (sin IA): `npm start`
-   - Con IA: `ANTHROPIC_API_KEY=tu_clave npm start`
-     (Windows PowerShell: `$env:ANTHROPIC_API_KEY="tu_clave"; npm start`)
+   - Con IA: `ANIM_ANTHROPIC_KEY=tu_clave npm start`
+     (Windows PowerShell: `$env:ANIM_ANTHROPIC_KEY="tu_clave"; npm start`)
+     En el entorno de la nube de Claude Code usa ese nombre: `ANTHROPIC_API_KEY` está reservado y no llega a la sesión.
 4. Abre http://localhost:3000
 
 La clave de la IA **solo** la lee el servidor. Nunca se envía al navegador.
@@ -76,7 +77,7 @@ Falta ver la reproducción con Play para juzgar cómo se mueve.
 - `npm test`: comprueba el sentido de giro de todas las articulaciones (207 casos), pasa la revisión automática
   por todas las plantillas y verifica que los 96 `.rbxmx` generados reproducen exactamente la vista previa.
 - IA simulada (sin clave ni coste): `node tests/mock-anthropic.mjs 4010` y en otra terminal
-  `ANTHROPIC_API_KEY=x ANTHROPIC_BASE_URL=http://localhost:4010 npm start`.
+  `ANIM_ANTHROPIC_KEY=x ANTHROPIC_BASE_URL=http://localhost:4010 npm start`.
 - Capturas: `node tools/capture.mjs docs/capturas` (necesita Playwright y el servidor arrancado).
 
 ## Archivos
