@@ -1,51 +1,104 @@
-# Animador IA para Roblox (prototipo)
+# Animador IA para Roblox
 
-Escribes una descripción ("saludar con la mano"), la IA (Claude) genera los keyframes
-de una animación R15 y la página la muestra en 3D.
+Web que crea animaciones para cualquier cosa con esqueleto de Roblox (personajes R15/R6,
+criaturas con huesos como las de Meshy, objetos con bisagras) a partir de una descripción
+en texto, y las descarga como `.rbxmx` para Roblox Studio.
 
-## Cómo arrancarlo
+**Cómo funciona:**
+
+1. Cargas un esqueleto. El programa clasifica cada parte (columna, patas, alas, cola…) y te deja corregirla.
+2. Elige una **plantilla de movimiento** real (caminar, atacar…) y la adapta a ese esqueleto.
+3. La IA (Claude) la modifica para cumplir tu descripción.
+4. **Autorrevisión:** se dibujan capturas de la animación, la IA las mira junto con una lista de fallos medidos automáticamente (partes que se atraviesan, pies que patinan, giros imposibles…) y la corrige, como mucho 3 veces.
+
+Capturas de las pruebas: [docs/capturas](docs/capturas/README.md).
+
+## Arrancarlo
 
 1. Instala Node.js 20 o superior (https://nodejs.org).
 2. En esta carpeta, ejecuta una vez: `npm install`
-3. Arranca el servidor:
-   - Solo demos (sin IA): `npm start`
+3. Arranca:
+   - Solo plantillas (sin IA): `npm start`
    - Con IA: `ANTHROPIC_API_KEY=tu_clave npm start`
-     (en Windows PowerShell: `$env:ANTHROPIC_API_KEY="tu_clave"; npm start`)
+     (Windows PowerShell: `$env:ANTHROPIC_API_KEY="tu_clave"; npm start`)
 4. Abre http://localhost:3000
 
-Opcional: `ANIM_MODEL=claude-haiku-5-5` usa un modelo más barato y rápido (menos preciso).
+La clave de la IA **solo** la lee el servidor. Nunca se envía al navegador.
 
-## Llevar la animación a Roblox Studio
+Opcional: `ANIM_MODEL=claude-sonnet-5-5` usa un modelo más barato (la mitad de precio, algo menos fino).
 
-1. En la web, pulsa **Descargar para Roblox Studio (.rbxmx)**.
-2. En Roblox Studio, crea un muñeco R15: pestaña **Avatar → Rig Builder → R15 → Block Rig**.
-3. En el Explorador, clic derecho sobre el muñeco → **Insert from File…** → elige el `.rbxmx`.
-   Dentro del muñeco aparece `AnimSaves` con la animación.
-   (Si el muñeco ya tenía un `AnimSaves`, mueve la animación dentro del que ya existía y borra el nuevo.)
-4. Abre **Avatar → Animation Editor**, selecciona el muñeco y, en el menú **⋯ → Load**, elige la animación.
-5. Desde ahí la puedes retocar y publicarla con **⋯ → Publish to Roblox** para usarla en tu juego.
+**Coste aproximado con el modelo por defecto (Claude Opus 5.5): entre 0,20 y 0,80 $ por animación**,
+según cuántas rondas de revisión haga. Es una estimación; todavía no se ha medido con una clave real.
+El consumo de cada llamada se guarda en `logs/revisiones.jsonl`.
+
+## Usar la web
+
+1. **Modelo:** elige un esqueleto de prueba o carga el tuyo (JSON, ver [formato](docs/formato-esqueleto.md)).
+   En "Partes detectadas", las marcadas con ⚠ son dudosas: comprueba su función y cámbiala si hace falta.
+2. **Animación:** pulsa una plantilla para verla al instante (sin IA), o escribe una descripción y pulsa
+   **Generar con IA**. Con "Autorrevisión" marcado verás en "Registro de la IA" qué detectó y corrigió en cada ronda.
+3. **Revisión automática:** lista de fallos medidos en la animación actual (rojo = grave, naranja = medio).
+4. **Exportar:** elige el contenedor y descarga el `.rbxmx`.
+
+## Probar el `.rbxmx` en Roblox Studio
+
+En `docs/ejemplos/` hay archivos listos para probar sin arrancar la web.
+
+### A. Personaje R15 o R6
+
+1. Abre un sitio vacío en Studio.
+2. **Avatar → Rig Builder → R15** (o R6) **→ Block Rig**. Aparece un muñeco llamado "Rig".
+3. Clic derecho sobre el muñeco en el Explorador → **Insert from File…** → elige `R15-Caminar-Folder.rbxmx`.
+4. **Avatar → Animation Editor**, haz clic en el muñeco y abre el menú **⋯ → Load**.
+5. ¿Aparece la animación "Caminar" en la lista?
+   - **Sí:** cárgala y dale a reproducir. El contenedor correcto es "Folder".
+   - **No:** borra la carpeta `AnimSaves` insertada y repite el paso 3 con `R15-Caminar-ObjectValue.rbxmx`.
+   - **Sigue sin aparecer:** inserta `R15-Caminar-SoloKeyframeSequence.rbxmx` dentro del muñeco, selecciona el muñeco,
+     abre **View → Command Bar**, pega el contenido de [`tools/studio/colocar-animacion.lua`](tools/studio/colocar-animacion.lua)
+     y pulsa Enter. Vuelve a mirar en **Load**.
+6. Apunta qué opción funcionó: es la que hay que dejar por defecto en la web (desplegable "Contenedor").
+
+### B. Criatura con huesos (Bone)
+
+1. Clic derecho en **Workspace** → **Insert from File…** → `Modelo-Lobo-huesos.rbxmx`.
+   Es un modelo de prueba solo con huesos (sin malla visible); si no ves los huesos, selecciónalos en el Explorador.
+2. Inserta `Lobo-Caminar-Folder.rbxmx` dentro del modelo "Lobo" y sigue los pasos 4–5 de arriba.
+3. Al reproducir, los huesos deben moverse con las patas alternándose.
+   Si la animación carga pero los huesos no se mueven, el anidado de poses de huesos no es el que Roblox espera: avísame.
+4. Lo mismo con `Modelo-Dragon-huesos.rbxmx` y `Dragon-Atacar-Folder.rbxmx`.
+
+## Pruebas automáticas
+
+- `npm test`: comprueba el sentido de giro de todas las articulaciones (207 casos), pasa la revisión automática
+  por todas las plantillas y verifica que los 96 `.rbxmx` generados reproducen exactamente la vista previa.
+- IA simulada (sin clave ni coste): `node tests/mock-anthropic.mjs 4010` y en otra terminal
+  `ANTHROPIC_API_KEY=x ANTHROPIC_BASE_URL=http://localhost:4010 npm start`.
+- Capturas: `node tools/capture.mjs docs/capturas` (necesita Playwright y el servidor arrancado).
 
 ## Archivos
 
-- `server.js` — servidor web y llamada a la IA (instrucciones para la IA en `SYSTEM_PROMPT`).
-- `public/rig.js` — el muñeco R15: piezas, articulaciones y medidas.
-- `public/presets.js` — animaciones de demo hechas a mano.
-- `public/animation.js` — cálculo de poses (lo usan la vista previa y la exportación).
-- `public/export-roblox.js` — crea el archivo `.rbxmx` (KeyframeSequence) para Roblox Studio.
-- `public/app.js` — escena 3D y reproductor de keyframes.
-- `public/index.html`, `public/style.css` — la página.
+| Archivo | Qué hace |
+|---|---|
+| `server.js` | Servidor web y API (`/api/generate`, `/api/review`). |
+| `server/ai.js` | Instrucciones y llamadas a Claude. Registro en `logs/revisiones.jsonl`. |
+| `public/skeleton.js` | Formato de esqueleto universal y cinemática directa. |
+| `public/classify.js` | Clasificación automática de partes por función. |
+| `public/motion.js` | Reglas por articulación: ejes de doblar/lateral/girar y límites. |
+| `public/templates.js` | Plantillas de movimiento por función. |
+| `public/animation.js` | Formato de animación, ajuste al suelo y pies fijos. |
+| `public/analyze.js` | Detección automática de fallos. |
+| `public/viewer.js` | Vista 3D y hojas de capturas. |
+| `public/export-roblox.js` | Exportación `.rbxmx` (Motor6D y Bone). |
+| `public/skeletons/` | Esqueletos de prueba (se generan con `npm run skeletons`). |
+| `docs/` | Formato de esqueleto, capturas y ejemplos para Studio. |
 
-## Formato de la animación
+## Limitaciones conocidas
 
-```json
-{
-  "name": "Saludar", "duration": 2.2, "loop": true,
-  "keyframes": [
-    { "time": 0.35, "easing": "Cubic", "rootOffset": {"x":0,"y":0,"z":0},
-      "poses": [ { "joint": "RightShoulder", "rx": 0, "ry": 0, "rz": 100 } ] }
-  ]
-}
-```
-
-Rotaciones en grados, como `CFrame.Angles(rx, ry, rz)` sobre el Motor6D del mismo nombre.
-El personaje mira hacia -Z (convención de Roblox), así que exportar a una KeyframeSequence es directo.
+- **Sin probar con la IA real:** el flujo de IA se ha probado con una IA simulada. La calidad de lo que genera
+  Claude está por medir con una clave.
+- **Pendiente de verificar en Studio:** qué contenedor reconoce el Editor de Animaciones, y si las poses de huesos
+  (Bone) están anidadas como Roblox espera.
+- El modelo debe mirar hacia -Z en el esqueleto (el futuro plugin lo normalizará).
+- Los ángulos son relativos a la pose de reposo. Las plantillas suponen brazos caídos; en un modelo en pose "T"
+  los brazos quedarán más abiertos.
+- En los saltos de cuadrúpedos las patas delanteras patinan un poco durante el impulso (aviso naranja).
