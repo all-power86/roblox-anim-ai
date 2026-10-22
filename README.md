@@ -15,11 +15,23 @@ de una animación R15 y la página la muestra en 3D.
 
 Opcional: `ANIM_MODEL=claude-haiku-5-5` usa un modelo más barato y rápido (menos preciso).
 
+## Llevar la animación a Roblox Studio
+
+1. En la web, pulsa **Descargar para Roblox Studio (.rbxmx)**.
+2. En Roblox Studio, crea un muñeco R15: pestaña **Avatar → Rig Builder → R15 → Block Rig**.
+3. En el Explorador, clic derecho sobre el muñeco → **Insert from File…** → elige el `.rbxmx`.
+   Dentro del muñeco aparece `AnimSaves` con la animación.
+   (Si el muñeco ya tenía un `AnimSaves`, mueve la animación dentro del que ya existía y borra el nuevo.)
+4. Abre **Avatar → Animation Editor**, selecciona el muñeco y, en el menú **⋯ → Load**, elige la animación.
+5. Desde ahí la puedes retocar y publicarla con **⋯ → Publish to Roblox** para usarla en tu juego.
+
 ## Archivos
 
 - `server.js` — servidor web y llamada a la IA (instrucciones para la IA en `SYSTEM_PROMPT`).
 - `public/rig.js` — el muñeco R15: piezas, articulaciones y medidas.
 - `public/presets.js` — animaciones de demo hechas a mano.
+- `public/animation.js` — cálculo de poses (lo usan la vista previa y la exportación).
+- `public/export-roblox.js` — crea el archivo `.rbxmx` (KeyframeSequence) para Roblox Studio.
 - `public/app.js` — escena 3D y reproductor de keyframes.
 - `public/index.html`, `public/style.css` — la página.
 

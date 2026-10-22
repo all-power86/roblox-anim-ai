@@ -5,9 +5,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { JOINTS } from './rig.js';
 import { PRESETS } from './presets.js';
+import { bakeAnimation, sampleBaked } from './animation.js';
+import { toRbxmx } from './export-roblox.js';
 
 const $ = (id) => document.getElementById(id);
-const DEG = Math.PI / 180;
 
 // ---------- Escena 3D ----------
 
@@ -23,9 +24,9 @@ scene.fog = new THREE.Fog(0x1d2330, 25, 60);
 
 // El personaje mira hacia -Z (como en Roblox), así que la cámara se pone delante, en -Z.
 const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
-camera.position.set(6, 6, -12);
+camera.position.set(7, 7, -15);
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(0, 3, 0);
+controls.target.set(0, 3.5, 0);
 controls.enableDamping = true;
 
 scene.add(new THREE.HemisphereLight(0xffffff, 0x445066, 1.6));
@@ -76,27 +77,16 @@ const rootRest = bones.Root.position.clone();
 
 // ---------- Reproductor de animación ----------
 
-let anim = null;
-let tracks = {}; // articulación -> [{ t, q, easing }]
-let rootTrack = []; // [{ t, v, easing }]
+let anim = null; // animación tal como la da la IA (o una demo)
+let baked = null; // la misma, con la pose completa en cada keyframe
 let time = 0;
 let playing = true;
 let speed = 1;
+const current = { quats: Object.fromEntries(JOINTS.map((j) => [j.name, new THREE.Quaternion()])), root: new THREE.Vector3() };
 
 function loadAnimation(a) {
   anim = a;
-  tracks = {};
-  rootTrack = [];
-  for (const k of a.keyframes) {
-    for (const p of k.poses) {
-      if (!bones[p.joint]) continue;
-      const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(p.rx * DEG, p.ry * DEG, p.rz * DEG, 'XYZ'));
-      (tracks[p.joint] ||= []).push({ t: k.time, q, easing: k.easing });
-    }
-    if (k.rootOffset) {
-      rootTrack.push({ t: k.time, v: new THREE.Vector3(k.rootOffset.x, k.rootOffset.y, k.rootOffset.z), easing: k.easing });
-    }
-  }
+  baked = bakeAnimation(a);
   time = 0;
   $('timeline').max = a.duration;
   renderKeyframeList();
@@ -104,42 +94,10 @@ function loadAnimation(a) {
   $('play').textContent = '⏸';
 }
 
-function ease(kind, x) {
-  if (kind === 'Constant') return 0;
-  if (kind === 'Cubic') return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-  return x;
-}
-
-// Busca los dos keyframes que rodean el instante t y devuelve cuánto mezclar entre ellos.
-function segment(track, t) {
-  if (t <= track[0].t) return [track[0], track[0], 0];
-  const last = track[track.length - 1];
-  if (t >= last.t) return [last, last, 0];
-  let i = 0;
-  while (track[i + 1].t < t) i++;
-  const a = track[i];
-  const b = track[i + 1];
-  const span = b.t - a.t;
-  return [a, b, span > 0 ? ease(a.easing, (t - a.t) / span) : 1];
-}
-
-const tmpQ = new THREE.Quaternion();
 function applyPose(t) {
-  for (const j of JOINTS) {
-    const track = tracks[j.name];
-    if (!track) {
-      bones[j.name].quaternion.identity();
-      continue;
-    }
-    const [a, b, f] = segment(track, t);
-    tmpQ.slerpQuaternions(a.q, b.q, f);
-    bones[j.name].quaternion.copy(tmpQ);
-  }
-  bones.Root.position.copy(rootRest);
-  if (rootTrack.length) {
-    const [a, b, f] = segment(rootTrack, t);
-    bones.Root.position.add(a.v.clone().lerp(b.v, f));
-  }
+  sampleBaked(baked, t, current);
+  for (const j of JOINTS) bones[j.name].quaternion.copy(current.quats[j.name]);
+  bones.Root.position.copy(rootRest).add(current.root);
 }
 
 // ---------- Panel ----------
@@ -192,14 +150,16 @@ for (const btn of document.querySelectorAll('[data-preset]')) {
     setStatus(`Demo cargada: ${PRESETS[btn.dataset.preset].name}`);
   };
 }
-$('download').onclick = () => {
-  const blob = new Blob([JSON.stringify(anim, null, 2)], { type: 'application/json' });
+function downloadFile(content, type, extension) {
+  const blob = new Blob([content], { type });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `${anim.name.replace(/[^\w\-áéíóúñ ]+/gi, '').trim() || 'animacion'}.json`;
+  a.download = `${anim.name.replace(/[^\w\-áéíóúñ ]+/gi, '').trim() || 'animacion'}.${extension}`;
   a.click();
   URL.revokeObjectURL(a.href);
-};
+}
+$('download').onclick = () => downloadFile(JSON.stringify(anim, null, 2), 'application/json', 'json');
+$('export-roblox').onclick = () => downloadFile(toRbxmx(anim), 'application/xml', 'rbxmx');
 
 $('generate').onclick = async () => {
   const prompt = $('prompt').value.trim();
