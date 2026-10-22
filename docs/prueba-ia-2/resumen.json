@@ -1,0 +1,43 @@
+{
+ "modelo": "claude-opus-5-5",
+ "fecha": "2026-10-22T21:15:19.428Z",
+ "resumen": [
+  {
+   "esqueleto": "r15",
+   "descripcion": "caminar cansado, arrastrando un poco los pies",
+   "estado": "¡Lista! (50 s)",
+   "segundos": 51,
+   "llamadas": 2,
+   "tokensEntrada": 20038,
+   "tokensSalida": 6583,
+   "costeUSD": 0.212,
+   "registro": [
+    "Generada (plantilla base: walk)",
+    "Ronda 1: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "lobo",
+   "descripcion": "atacar mordiendo con rabia",
+   "estado": "¡Lista! (144 s)",
+   "segundos": 145,
+   "llamadas": 4,
+   "tokensEntrada": 41085,
+   "tokensSalida": 19670,
+   "costeUSD": 0.558,
+   "registro": [
+    "Generada (plantilla base: attack)",
+    "Ronda 1: corregida\nFallos automáticos: El pie FrontPaw_L se desliza de lado 0.66 studs mientras está apoyado. El pie FrontPaw_R se desliza de lado 0.84 studs mientras está apoyado. • Las patas delanteras se deslizan de lado (0.66 y 0.84 studs) mientras están apoyadas. Lo provoca el twist del root (-4/+4) en la sacudida, que gira todo el cuerpo con las patas apoyadas, sumado al side=4 de las patas que cambia entre keyframes. Cambios: Quito el twist del root en la sacudida y la paso al Chest y a Spine2 (twist y side), con el cuello y la cabeza, para que el tronco delantero sacuda la presa sin arrastrar las patas. Pongo side=0 en todas las patas para que los pies no se desplacen lateralmente. Mantengo la anticipación, la estocada y el mordisco.",
+    "Ronda 2: corregida\nFallos automáticos: El pie FrontPaw_L se desliza de lado 1.34 studs mientras está apoyado. El pie FrontPaw_R se desliza de lado 1.36 studs mientras está apoyado. • Las patas delanteras se deslizan de lado unos 1.35 studs mientras están apoyadas. La causa es la sacudida del mordisco (0.70-0.94 s), que gira e inclina Chest y Spine2, y esas articulaciones arrastran los hombros hacia los lados. Cambios: Quito el side y el twist de Chest y Spine2 durante la sacudida, y paso todo el zarandeo al cuello y la cabeza con algo más de amplitud. Así el torso queda estable y las patas delanteras no patinan. El resto (anticipación, lanzamiento, mordisco y recuperación) se mantiene igual.",
+    "Ronda 3: corregida\nFallos automáticos: El pie FrontPaw_L patina 0.94 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie FrontPaw_R patina 0.94 studs mientras está apoyado (en esta animación debería quedarse quieto). • Las patas delanteras patinan 0.94 studs: el root avanza 1.4 studs entre la anticipación y el mordisco y además las patas delanteras giran al revés (hacia atrás en la anticipación y hacia delante en el golpe), así que los pies no pueden quedarse fijos. Cambios: Reduzco el avance del root a unos 0.9 studs (de -0.4 a 0.5), que sigue por encima de un cuarto de la altura de cadera. Invierto el ángulo de las patas delanteras: hacia delante y flexionadas en la anticipación, hacia atrás en el golpe, como corresponde a pies plantados con el cuerpo avanzando. Las traseras se ajustan en proporción. Mantengo la cabeza baja al morder, las sacudidas rabiosas y el seguimiento de la cola."
+   ],
+   "fallosFinales": [
+    "El pie FrontPaw_L patina 0.47 studs mientras está apoyado (en esta animación debería quedarse quieto).",
+    "El pie FrontPaw_R patina 0.47 studs mientras está apoyado (en esta animación debería quedarse quieto)."
+   ]
+  }
+ ]
+}
