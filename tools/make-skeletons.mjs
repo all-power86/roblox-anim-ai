@@ -83,7 +83,7 @@ save('r15.json', motorRig('R15', 'HumanoidRootPart', [
   const h = 4.2; // altura de cadera
   save('yeti.json', motorRig('Yeti', 'HumanoidRootPart', [
     ['Raiz', null, 'Pelvis', [0, h, 0], [3.2, 1.0, 2.2], [0, 0.4, 0]],
-    ['Cintura', 'Raiz', 'Pecho', [0, h + 0.9, 0], [4.2, 3.0, 2.6], [0, 1.5, 0.1]],
+    ['Cintura', 'Raiz', 'Pecho', [0, h + 0.9, 0], [3.7, 3.0, 2.6], [0, 1.5, 0.1]],
     ['Cuello', 'Cintura', 'Cabeza', [0, h + 3.9, -0.3], [1.9, 1.8, 1.9], [0, 0.8, -0.2]],
     ['HombroDer', 'Cintura', 'BrazoDer', [2.6, h + 3.2, 0], [1.4, 2.2, 1.4], [0, -1.0, 0]],
     ['CodoDer', 'HombroDer', 'AntebrazoDer', [2.6, h + 1.1, 0], [1.3, 2.0, 1.3], [0, -1.0, 0]],

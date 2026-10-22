@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Hoja de capturas</title>
+  <script type="importmap">
+    { "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }
+  </script>
+  <style>body { margin: 0; background: #12151c; color: #e8ebf0; font: 14px system-ui, sans-serif; } #info { padding: 6px 10px; }</style>
+</head>
+<body>
+  <div id="info"></div>
+  <div id="out"></div>
+  <script type="module">
+    // Página interna para generar capturas: /sheet.html?skeleton=lobo&template=walk
+    import { prepareSkeleton } from './skeleton.js';
+    import { classifySkeleton } from './classify.js';
+    import { buildMotion } from './motion.js';
+    import { bakeAnimation } from './animation.js';
+    import { makeContext, buildTemplate } from './templates.js';
+    import { renderContactSheet, pickSheetTimes } from './viewer.js';
+
+    const q = new URLSearchParams(location.search);
+    try {
+      const raw = await (await fetch(`skeletons/${q.get('skeleton')}.json`)).json();
+      const sk = prepareSkeleton(raw);
+      const cls = classifySkeleton(sk);
+      const motion = buildMotion(sk, cls.joints);
+      const anim = buildTemplate(q.get('template'), makeContext(sk, motion, cls.bodyType));
+      if (!anim) throw new Error('plantilla no aplicable');
+      const baked = bakeAnimation(anim, sk, motion);
+      const views = (q.get('views') || 'frente34,lado').split(',');
+      const canvas = renderContactSheet(sk, motion, baked, pickSheetTimes(anim, Number(q.get('n') || 8)), views, Number(q.get('tile') || 230));
+      document.getElementById('info').textContent = `${sk.name} · ${anim.name} · ${cls.bodyType} · ${anim.duration}s`;
+      document.getElementById('out').appendChild(canvas);
+      document.body.dataset.ready = '1';
+    } catch (e) {
+      document.getElementById('info').textContent = 'ERROR: ' + e.message;
+      document.body.dataset.ready = 'error';
+      console.error(e);
+    }
+  </script>
+</body>
+</html>
