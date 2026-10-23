@@ -43,8 +43,9 @@ http.createServer(async (req, res) => {
     return reply(res, anim);
   }
   const round = Number((text.match(/ronda (\d+) de 3/) || [])[1] || 1);
-  if (round >= 2) return reply(res, { ok: true, problems: [], changes: '', animation: null });
-  const anim = JSON.parse(text.split('ANIMACIÓN ACTUAL:\n')[1].split('\n\nRevisa con ojo')[0]);
+  // MOCK_NUNCA_OK=1: no aprueba nunca (para probar el estado "Lista con avisos").
+  if (round >= 2 && !process.env.MOCK_NUNCA_OK) return reply(res, { ok: true, problems: [], changes: '', animation: null });
+  const anim = JSON.parse(text.split(/ANIMACIÓN ACTUAL[^\n]*:\n/)[1].split('\n\nRevisa con ojo')[0]);
   anim.keyframes.forEach((k) => {
     k.grounded = k.grounded !== false; k.lift = k.lift || 0;
     k.root = { right: 0, up: 0, forward: 0, bend: 0, side: 0, twist: 0, ...k.root };

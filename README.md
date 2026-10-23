@@ -114,5 +114,8 @@ Falta ver la reproducción con Play para juzgar cómo se mueve.
 - El modelo debe mirar hacia -Z en el esqueleto (el futuro plugin lo normalizará).
 - Los ángulos son relativos a la pose de reposo. Las plantillas suponen brazos caídos; en un modelo en pose "T"
   los brazos quedarán más abiertos.
+- Los pies apoyados se quedan quietos aunque el torso gire, se incline o se desplace (se ajustan cadera y
+  rodilla). Si el giro es muy grande, la pata llega a su límite y el pie patina un poco (aviso naranja).
 - En los saltos de cuadrúpedos las patas delanteras patinan un poco durante el impulso, y en el saludo del lobo
   la pata que se levanta roza el suelo al despegar (avisos naranjas).
+- Si la IA no da la animación por buena tras 3 rondas, o quedan fallos, la web dice "Lista con avisos" y explica qué falta.

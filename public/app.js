@@ -169,9 +169,27 @@ function renderLog() {
   $('log-box').open = true;
 }
 
-function setStatus(text, isError = false) {
+function setStatus(text, isError = false, isWarning = false) {
   $('status').textContent = text;
   $('status').classList.toggle('error', isError);
+  $('status').classList.toggle('warning', isWarning);
+}
+
+// Fallos de la revisión automática explicados en castellano sencillo (para el estado final).
+const PLAIN = {
+  pie_patina: 'algún pie resbala por el suelo cuando debería estar quieto',
+  se_atraviesan: 'algunas partes del cuerpo se atraviesan entre sí',
+  atraviesa_suelo: 'el cuerpo se mete en el suelo',
+  flota: 'el cuerpo flota sin tocar el suelo',
+  giro_imposible: 'alguna articulación gira más de lo que podría',
+  bucle_no_cierra: 'el bucle da un salto al volver a empezar',
+  quieto: 'apenas se mueve',
+  no_avanza: 'el ataque no se lanza hacia delante',
+  mordisco_arriba: 'al morder levanta la cabeza (parece un aullido)',
+};
+function plainIssues(issues) {
+  const list = [...new Set(issues.filter((i) => i.severity !== 'baja').map((i) => PLAIN[i.type] || i.message))];
+  return list.length ? list.join('; ') : '';
 }
 
 // ---------- IA con autorrevisión ----------
@@ -204,7 +222,9 @@ $('generate').onclick = async () => {
     setAnimation(anim, { keepLog: true });
     renderLog();
 
-    if ($('self-review').checked) {
+    let approved = false;
+    const reviewed = $('self-review').checked;
+    if (reviewed) {
       for (let round = 1; round <= MAX_REVIEW_ROUNDS; round++) {
         const { issues } = analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength, prompt: $('prompt').value });
         const image = sheetImage(anim);
@@ -217,7 +237,7 @@ $('generate').onclick = async () => {
           image,
         });
         renderLog();
-        if (rev.ok || !rev.animation) break;
+        if (rev.ok || !rev.animation) { approved = true; break; }
         anim = rev.animation;
         setAnimation(anim, { keepLog: true });
       }
@@ -225,7 +245,18 @@ $('generate').onclick = async () => {
     anim.reviewLog = state.log.map(({ title, text }) => ({ title, text }));
     window.__ultimaAnimacion = anim; // para tools/prueba-ia.mjs
     setAnimation(anim, { keepLog: true });
-    setStatus(`¡Lista! (${((performance.now() - started) / 1000).toFixed(0)} s)`);
+    const secs = `${((performance.now() - started) / 1000).toFixed(0)} s`;
+    const left = plainIssues(analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength, prompt }).issues);
+    if (!reviewed) {
+      setStatus(left ? `Lista con avisos (${secs}, sin autorrevisión). Queda por mejorar: ${left}.` : `Lista (${secs}, sin autorrevisión).`, false, Boolean(left));
+    } else if (approved && !left) {
+      setStatus(`¡Lista! (${secs}) La IA la ha dado por buena.`);
+    } else {
+      const why = approved
+        ? 'La IA la ha dado por buena, pero la revisión automática ha encontrado fallos.'
+        : `La IA no la ha dado por buena tras ${MAX_REVIEW_ROUNDS} rondas de revisión${left ? '.' : ': su última corrección no se ha vuelto a revisar, mírala antes de usarla.'}`;
+      setStatus(`Lista con avisos (${secs}). ${why}${left ? ` Queda por mejorar: ${left}. Detalles en "Revisión automática".` : ''}`, false, true);
+    }
   } catch (err) {
     setStatus(err.message, true);
   } finally {
