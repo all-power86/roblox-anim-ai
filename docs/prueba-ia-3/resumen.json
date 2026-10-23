@@ -1,0 +1,42 @@
+{
+ "modelo": "claude-opus-5-5",
+ "fecha": "2026-10-23T09:31:14.857Z",
+ "resumen": [
+  {
+   "esqueleto": "r15",
+   "descripcion": "caminar cansado, arrastrando un poco los pies",
+   "estado": "¡Lista! (67 s) La IA la ha dado por buena.",
+   "segundos": 67,
+   "llamadas": 2,
+   "tokensEntrada": 20749,
+   "tokensSalida": 7596,
+   "costeUSD": 0.235,
+   "registro": [
+    "Generada (plantilla base: walk)",
+    "Ronda 1: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "lobo",
+   "descripcion": "atacar mordiendo con rabia",
+   "estado": "Lista con avisos (162 s). La IA no la ha dado por buena tras 3 rondas de revisión: su última corrección no se ha vuelto a revisar, mírala antes de usarla.",
+   "segundos": 163,
+   "llamadas": 4,
+   "tokensEntrada": 42824,
+   "tokensSalida": 21794,
+   "costeUSD": 0.607,
+   "registro": [
+    "Generada (plantilla base: attack)",
+    "Ronda 1: corregida\nFallos automáticos: El pie FrontPaw_L se desliza de lado 0.37 studs mientras está apoyado. El pie FrontPaw_R se desliza de lado 0.33 studs mientras está apoyado. Movimiento muy brusco: FrontLeg_L_1 gira a 1738°/s cerca de t=1.13 s. • Las patas delanteras se deslizan de lado (0.33-0.37 studs) durante la sacudida porque el root gira y se inclina de lado (twist ±4, side ±2), lo que arrastra los hombros lateralmente. • FrontLeg_L_1 gira de golpe cerca de t=1.13 s: la vuelta al reposo entre 0.92 y 1.4 es un solo tramo largo y el ajuste de patas produce un salto brusco. • La recuperación es plana; falta un asentamiento intermedio con peso tras el mordisco. Cambios: Quito el side/twist del root en la sacudida y la paso a cuello, cabeza y un poco al pecho, para que los hombros no se desplacen de lado y las patas delanteras no patinen. Añado un keyframe intermedio en 1.1 s con las patas a medio camino para suavizar la vuelta al reposo y evitar el giro brusco. Mantengo la anticipación (forward -0.45) y la embestida (+0.95) con cabeza hacia delante y abajo.",
+    "Ronda 2: corregida\nFallos automáticos: El pie FrontPaw_L patina 0.52 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie FrontPaw_R patina 0.50 studs mientras está apoyado (en esta animación debería quedarse quieto). • Las patas delanteras patinan unos 0.5 studs. Al lanzarse, el root avanza mucho (de -0.45 a 1.0) y además FrontLeg_1 gira +45°, que lleva la pata hacia delante en vez de compensar el avance del cuerpo. • En el impacto (t=0.68) la postura delantera queda extraña y agachada, con las patas delanteras estiradas hacia delante. Cambios: Reduzco el recorrido del root (-0.35 en la anticipación, +0.45 en el mordisco), que sigue superando un cuarto de la altura de cadera. Las patas delanteras ahora compensan el movimiento del cuerpo: apuntan hacia delante en la anticipación (cuerpo atrás) y hacia atrás en el lanzamiento, con codo y muñeca flexionados para que la pata no se mueva del sitio. Ajusto las traseras en proporción. Mantengo el alcance con el cuello, la cabeza y la mandíbula, más la sacudida rabiosa de la cabeza.",
+    "Ronda 3: corregida\nFallos automáticos: El pie FrontPaw_L patina 0.63 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie FrontPaw_R patina 0.61 studs mientras está apoyado (en esta animación debería quedarse quieto). Movimiento muy brusco: FrontLeg_R_1 gira a 1566°/s cerca de t=0.80 s. • Las patas delanteras patinan unos 0.6 studs durante la estocada: el desplazamiento del root (de -0.35 a 0.45) supera el alcance cómodo de las patas delanteras, así que el ajuste automático no consigue mantenerlas fijas. • FrontLeg_R_1 gira de forma brusca cerca de t=0.80 s (1566°/s), porque el ajuste de la pata se invierte al ir casi estirada. Cambios: Reduzco el recorrido del root a -0.25 → 0.33 studs (0.58, sigue por encima de un cuarto de la altura de cadera) y bajo un poco la inclinación hacia delante. Las patas delanteras quedan más flexionadas y verticales en la estocada para tener margen de alcance. Las sacudidas de cabeza y la recuperación son más suaves, y elimino el keyframe intermedio de patas para evitar el giro brusco. El mordisco mantiene el cuello y la cabeza hacia delante y abajo."
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  }
+ ]
+}
