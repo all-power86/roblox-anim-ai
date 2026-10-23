@@ -176,6 +176,7 @@ export function legChain(foot, motion) {
 // Funciona con cualquier pata (2-4 tramos, Motor6D, AnimationConstraint o Bone) porque usa
 // los ejes anatómicos de motion.js. Devuelve la distancia que queda en el peor pie.
 const PIN_MOTIONS = { 'leg.upper': ['bend', 'side', 'twist'], 'leg.lower': ['bend'] };
+const PIN_EFFORT = 0.0005; // coste de cambiar 1° (en fracciones de la altura de cadera)
 function pinFeet(anim, skeleton, motion, k, index, feet, L) {
   const base = bakeAnimation(anim, skeleton, motion).keyframes[index];
   const fk0 = forwardKinematics(skeleton, base);
@@ -202,8 +203,14 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
       return new THREE.Vector3().setFromMatrixPosition(fk[foot.name]).distanceTo(foot.restPos);
     };
     params.forEach(setRot);
-    let best = error();
-    for (let step = 8; step >= 0.25 && best > 1e-3; step /= 2) {
+    // Se prefiere la solución que menos cambia la pose original (y antes doblar que abrir o
+    // girar la cadera): sin esto, dos keyframes seguidos pueden acabar con soluciones muy
+    // distintas y la pata gira de golpe entre ellos.
+    const start = params.map((p) => ({ bend: p.bend || 0, side: p.side || 0, twist: p.twist || 0 }));
+    const cost = () => error() + params.reduce((sum, p, i) => sum + PIN_EFFORT * L
+      * (Math.abs((p.bend || 0) - start[i].bend) + 1 * Math.abs((p.side || 0) - start[i].side) + 1 * Math.abs((p.twist || 0) - start[i].twist)), 0);
+    let best = cost();
+    for (let step = 8; step >= 0.25; step /= 2) {
       let improved = true;
       for (let guard = 0; improved && guard < 30; guard++) {
         improved = false;
@@ -214,7 +221,7 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
               const old = p[key] || 0;
               p[key] = Math.min(lims[key][1], Math.max(lims[key][0], old + dir * step));
               setRot(p);
-              const e = error();
+              const e = cost();
               if (e < best - 1e-4) { best = e; improved = true; } else { p[key] = old; setRot(p); }
             }
           }
@@ -222,7 +229,7 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
       }
     }
     params.forEach((p) => { for (const key of ['bend', 'side', 'twist']) p[key] = round(p[key] || 0); setRot(p); });
-    worst = Math.max(worst, best);
+    worst = Math.max(worst, error());
   }
   return worst;
 }
@@ -300,10 +307,9 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
     }
     if (!toInsert.length) break;
     for (const t of toInsert) {
-      const k = interpolateKeyframe(anim, t);
+      const k = insertKeyframe(anim, t);
       k.grounded = false; // solo evitar hundirse, sin pegarlo al suelo
       delete k.lift;
-      anim.keyframes.push(k);
       inserted++;
     }
   }
@@ -313,10 +319,22 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
     anim.keyframes.sort((a, b) => a.time - b.time);
     anim.keyframes.forEach((k, i) => pinFeet(anim, skeleton, motion, k, i, feet, L));
     inserted += pinBetweenKeyframes(anim, skeleton, motion, feet, L);
+    limitPinSpeed(anim, motion, feet);
     fixKeyframes();
   }
   anim.keyframes.sort((a, b) => a.time - b.time);
   return { changed, inserted };
+}
+
+// Inserta un keyframe en t con la pose interpolada. Si el tramo tenía aceleración (Cubic),
+// los dos trozos pasan a ser lineales siguiendo la misma curva: con Cubic cada trozo
+// arrancaría y frenaría por separado y el movimiento iría a tirones.
+function insertKeyframe(anim, t) {
+  const k = interpolateKeyframe(anim, t);
+  const prev = anim.keyframes.filter((q) => q.time <= t).sort((a, b) => b.time - a.time)[0];
+  if (prev && prev.easing === 'Cubic') { prev.easing = 'Linear'; k.easing = 'Linear'; }
+  anim.keyframes.push(k);
+  return k;
 }
 
 // Entre dos keyframes con un pie apoyado, la interpolación puede hacerlo patinar aunque esté
@@ -355,8 +373,7 @@ function pinBetweenKeyframes(anim, skeleton, motion, feet, L) {
     }
     if (!toInsert.length) break;
     for (const t of toInsert) {
-      const k = interpolateKeyframe(anim, t);
-      anim.keyframes.push(k);
+      insertKeyframe(anim, t);
       inserted++;
     }
     anim.keyframes.sort((a, b) => a.time - b.time);
@@ -366,6 +383,40 @@ function pinBetweenKeyframes(anim, skeleton, motion, feet, L) {
     }
   }
   return inserted;
+}
+
+// Límite de velocidad de las patas ajustadas: el ajuste de pies fijos no puede hacer que
+// cadera y rodilla giren más deprisa que PIN_SPEED grados por segundo (o que la animación
+// original, si ya era más rápida). Así la pata nunca gira de golpe por culpa del ajuste,
+// aunque a cambio un pie pueda moverse un poco en un cambio muy rápido.
+// Con "Cubic" la velocidad máxima de un tramo es 1,5 veces la media.
+export const PIN_SPEED = { normal: 500, attack: 850 };
+function limitPinSpeed(anim, motion, feet) {
+  const joints = new Set(feet.flatMap((f) => (legChain(f, motion).length >= 2 ? legChain(f, motion) : [])));
+  if (!joints.size || !anim.authored) return;
+  const cap = anim.template === 'attack' ? PIN_SPEED.attack : PIN_SPEED.normal;
+  const original = { ...anim, keyframes: anim.authored };
+  const kfs = [...anim.keyframes].sort((a, b) => a.time - b.time);
+  for (const joint of joints) {
+    const list = kfs.map((k) => ({ k, p: k.poses.find((q) => q.joint === joint) })).filter((e) => e.p);
+    if (list.length < 2) continue;
+    const base = list.map(({ k }) => interpolateKeyframe(original, k.time).poses.find((q) => q.joint === joint) || {});
+    for (const key of ['bend', 'side', 'twist']) {
+      const v = list.map(({ p }) => p[key] || 0);
+      const b0 = base.map((q) => q[key] || 0);
+      // Cambio permitido entre los keyframes i y j (vecinos).
+      const allowed = (i, j) => {
+        const first = Math.min(i, j);
+        const dt = Math.abs(list[i].k.time - list[j].k.time);
+        const peak = list[first].k.easing === 'Cubic' ? 1.5 : 1;
+        return Math.max(Math.abs(b0[i] - b0[j]), (cap * dt) / peak);
+      };
+      const clampFrom = (i, j) => { const m = allowed(i, j); v[i] = Math.min(v[j] + m, Math.max(v[j] - m, v[i])); };
+      for (let i = 1; i < v.length; i++) clampFrom(i, i - 1);
+      for (let i = v.length - 2; i >= 0; i--) clampFrom(i, i + 1);
+      list.forEach(({ p }, i) => { p[key] = round(v[i]); });
+    }
+  }
 }
 
 const round = (v) => Math.round(v * 1000) / 1000;
