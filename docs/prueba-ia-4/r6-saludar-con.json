@@ -1,0 +1,1040 @@
+{
+ "name": "Saludar con la mano",
+ "duration": 2.6,
+ "loop": false,
+ "keyframes": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.048,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.15,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0.017,
+    "up": 0.036,
+    "forward": 0.035,
+    "bend": 2,
+    "side": 1,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.42,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.017,
+    "up": 0.048,
+    "forward": 0,
+    "bend": 0,
+    "side": -1,
+    "twist": -2
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 70,
+     "twist": 3
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 2,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": -2,
+     "twist": 5
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.65,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.052,
+    "up": 0.079,
+    "forward": -0.035,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.87,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.035,
+    "up": 0.064,
+    "forward": -0.035,
+    "bend": -2,
+    "side": -2,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 112,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 1,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -4,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.09,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.052,
+    "up": 0.079,
+    "forward": -0.035,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.31,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.035,
+    "up": 0.064,
+    "forward": -0.035,
+    "bend": -2,
+    "side": -2,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 112,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 1,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -4,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.53,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.052,
+    "up": 0.079,
+    "forward": -0.035,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.75,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": -0.035,
+    "up": 0.056,
+    "forward": -0.017,
+    "bend": -1,
+    "side": -2,
+    "twist": -3
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 26,
+     "side": 118,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -3,
+     "twist": 8
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 2.15,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.04,
+    "forward": 0.017,
+    "bend": 1,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 3,
+     "side": 5,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 5,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -2,
+     "side": 0,
+     "twist": 1
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 2.6,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.048,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "template": "wave",
+ "authored": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.15,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 2,
+    "side": 1,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.42,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": -1,
+    "twist": -2
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 70,
+     "twist": 3
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 2,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": -2,
+     "twist": 5
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.65,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.87,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -2,
+    "side": -2,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 112,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 1,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -4,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.09,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.31,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -2,
+    "side": -2,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 112,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 1,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -4,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.53,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -2,
+    "side": -3,
+    "twist": -4
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 28,
+     "side": 135,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": -2,
+     "side": 9,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -6,
+     "side": -5,
+     "twist": 10
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.75,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": -1,
+    "side": -2,
+    "twist": -3
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 26,
+     "side": 118,
+     "twist": 5
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -5,
+     "side": -3,
+     "twist": 8
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 2.15,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 1,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 3,
+     "side": 5,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 5,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -2,
+     "side": 0,
+     "twist": 1
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 2.6,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Right Shoulder",
+     "bend": 0,
+     "side": 8,
+     "twist": 0
+    },
+    {
+     "joint": "Left Shoulder",
+     "bend": 0,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "Neck",
+     "bend": -3,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Left Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    },
+    {
+     "joint": "Right Hip",
+     "bend": 2,
+     "side": 2,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "reviewLog": [
+  {
+   "title": "Generada (plantilla base: wave)",
+   "text": ""
+  },
+  {
+   "title": "Ronda 1: corregida",
+   "text": "Fallos automáticos: Partes que se atraviesan: Neck ↔ Right Shoulder (t=0.90 s, 0.40 studs); Right Shoulder ↔ RootJoint (t=0.40 s, 0.34 studs). Movimiento muy brusco: Right Shoulder gira a 1518°/s cerca de t=0.27 s.\n• Con Right Shoulder side=168 el brazo pasa por encima de la cabeza. Además, el cuello se ladea hacia la derecha (side +8/+9), así que la cabeza choca con el brazo (t≈0.90 s).\n• Al subir el brazo de golpe, el hombro derecho atraviesa el torso (t≈0.40 s).\n• El brazo sube 166° en 0.28 s (unos 1500°/s): es demasiado brusco y no tiene arco.\nCambios: Limito la elevación del brazo a side 122–150 y le doy bend 20 para que quede delante y separado de la cabeza. La cabeza se ladea hacia la izquierda, apartándose del brazo. Añado un keyframe intermedio (t=0.3) para que el brazo suba en arco y más despacio, con un pequeño sobrepaso. El saludo oscila de forma regular y luego se asienta."
+  },
+  {
+   "title": "Ronda 2: corregida",
+   "text": "Fallos automáticos: Partes que se atraviesan: Right Shoulder ↔ RootJoint (t=0.50 s, 0.19 studs). Movimiento muy brusco: Right Shoulder gira a 1068°/s cerca de t=0.23 s.\n• En t=0.50 s el brazo derecho (side 150) sube demasiado y cruza por encima de la cabeza y el tronco.\n• La subida del brazo de side 6 a 80 en 0.18 s es demasiado brusca (más de 1000°/s).\nCambios: Limito la altura máxima del brazo a side 135, con más bend (28) para separarlo hacia delante de la cabeza. El vaivén pasa a ser 112-135. Alargo la subida (0.15→0.42→0.65 s) para suavizarla y retraso todo el saludo; la duración pasa a 2.6 s. Añado un pequeño balanceo del brazo izquierdo como movimiento secundario."
+  },
+  {
+   "title": "Ronda 3: aprobada",
+   "text": "Fallos automáticos: ninguno"
+  }
+ ]
+}

@@ -29,7 +29,8 @@ La clave de la IA **solo** la lee el servidor. Nunca se envía al navegador.
 Opcional: `ANIM_MODEL=claude-sonnet-5-5` usa un modelo más barato (la mitad de precio, algo menos fino).
 
 **Coste aproximado con el modelo por defecto (Claude Opus 5.5): entre 0,20 y 0,80 $ por animación**,
-según cuántas rondas de revisión haga. Medido en la prueba real: 0,38 $ (2 rondas) y 0,79 $ (3 rondas).
+según cuántas rondas de revisión haga. Medido en la prueba de variedad (23/10/2026, 6 animaciones en 6 esqueletos): 0,29 $ de media,
+entre 0,05 $ (puerta) y 0,57 $ (dragón volando); resultados en [docs/prueba-ia-4](docs/prueba-ia-4/).
 El consumo de cada llamada se guarda en `logs/revisiones.jsonl`.
 
 ## Usar la web

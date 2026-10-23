@@ -1,0 +1,172 @@
+{
+ "name": "Abrir puerta despacio",
+ "duration": 6,
+ "loop": false,
+ "keyframes": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.6,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": -1,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.4,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 6,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.9,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 7,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 4.6,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 92,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 5.2,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 89,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 6,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Bisagra",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "template": "open",
+ "reviewLog": [
+  {
+   "title": "Generada (plantilla base: open)",
+   "text": ""
+  },
+  {
+   "title": "Ronda 1: aprobada",
+   "text": "Fallos automáticos: ninguno"
+  }
+ ]
+}

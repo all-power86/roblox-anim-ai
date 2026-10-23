@@ -1,0 +1,115 @@
+{
+ "modelo": "claude-opus-5-5",
+ "fecha": "2026-10-23T11:08:53.892Z",
+ "resumen": [
+  {
+   "esqueleto": "lobo",
+   "descripcion": "atacar mordiendo con rabia",
+   "estado": "¡Lista! (93 s) La IA la ha dado por buena.",
+   "segundos": 94,
+   "llamadas": 3,
+   "tokensEntrada": 32163,
+   "tokensSalida": 12136,
+   "costeUSD": 0.371,
+   "registro": [
+    "Generada (plantilla base: attack)",
+    "Ronda 1: corregida\nFallos automáticos: El pie FrontPaw_L patina 0.80 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie FrontPaw_R patina 0.79 studs mientras está apoyado (en esta animación debería quedarse quieto). • Las patas delanteras patinan unos 0.8 studs: durante la estocada el cuerpo avanza 1.35 studs y las patas delanteras se lanzan hacia delante (bend 48), así que los pies apoyados se mueven. • Las patas delanteras se mueven al revés: con el pie quieto y el cuerpo avanzando, la pata debería inclinarse hacia atrás, no hacia delante. Cambios: Reduzco el recorrido del root: de -0.3 en la anticipación a 0.4 en el mordisco, unos 0.7 studs (más de un cuarto de la altura de cadera). Las patas delanteras ahora se inclinan hacia delante en la anticipación y hacia atrás en el golpe, coherente con unos pies plantados. Las rodillas se doblan menos y el recuperado se escala igual. Mantengo el cuello lanzado hacia abajo con la mandíbula cerrándose, la sacudida de cabeza y la cola.",
+    "Ronda 2: aprobada\nFallos automáticos: ninguno Cambios: Sin cambios: la anticipación (hacia atrás, agachado, boca entreabierta) y la estocada (avance de unos 0.7 studs, más de un cuarto de la altura de cadera) son correctas. La cabeza baja y va hacia delante al cerrar la mandíbula, las sacudidas laterales transmiten rabia y la vuelta a reposo asienta bien. No se ven cruces ni patinazos relevantes."
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "yeti",
+   "descripcion": "atacar con un zarpazo",
+   "estado": "¡Lista! (66 s) La IA la ha dado por buena.",
+   "segundos": 67,
+   "llamadas": 3,
+   "tokensEntrada": 23198,
+   "tokensSalida": 7886,
+   "costeUSD": 0.251,
+   "registro": [
+    "Generada (plantilla base: attack)",
+    "Ronda 1: corregida\nFallos automáticos: ninguno • En el seguimiento (t≈0.8–1.3) el brazo derecho cruza por delante del pecho con el hombro cerrado (side negativo) y el torso girado a la izquierda; el antebrazo roza o atraviesa el tronco. Cambios: Abro el hombro derecho en el golpe y el seguimiento (side -15→2 y -10→6) y bajo un poco el giro de cintura para que la zarpa pase por delante del cuerpo sin atravesarlo. Añado un pequeño asentamiento a t=1.4.",
+    "Ronda 2: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "dragon",
+   "descripcion": "volar batiendo las alas",
+   "estado": "Lista con avisos (145 s). La IA la ha dado por buena, pero la revisión automática ha encontrado fallos. Queda por mejorar: algún pie resbala por el suelo cuando debería estar quieto. Detalles en \"Revisión automática\".",
+   "segundos": 146,
+   "llamadas": 4,
+   "tokensEntrada": 49412,
+   "tokensSalida": 18615,
+   "costeUSD": 0.57,
+   "registro": [
+    "Generada (plantilla base: idle)",
+    "Ronda 1: corregida\nFallos automáticos: El pie Leg.FL.4 patina 0.80 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie Leg.FR.4 patina 0.80 studs mientras está apoyado (en esta animación debería quedarse quieto). • Las patas delanteras quedan casi a ras de suelo, se detectan como apoyadas y patinan 0.8 studs. Además cambian de ángulo entre keyframes, así que se mueven respecto al cuerpo. • En el batido hacia abajo (t=0.5) las alas bajan demasiado (bend 50): cruzan la zona de las patas y llegan casi al suelo. • El dragón vuela demasiado bajo, con la sombra casi pegada al cuerpo. No da sensación de vuelo. Cambios: Subo el lift a unos 4-4.6 studs y hago que el cuerpo suba durante el batido hacia abajo. Las patas quedan recogidas con valores constantes, definidos solo en el primer y el último keyframe, para que no se muevan ni patinen. Reduzco el batido hacia abajo a 35° y pliego algo más las puntas para que las alas no atraviesen las patas. Añado un poco más de ondulación de cuello y cola como movimiento secundario.",
+    "Ronda 2: corregida\nFallos automáticos: El pie Leg.FL.4 patina 1.06 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie Leg.FR.4 patina 1.06 studs mientras está apoyado (en esta animación debería quedarse quieto). • Las patas delanteras se desplazan 1.06 studs. El tronco cambia de inclinación (root y columna) y la altura sube y baja de forma irregular, y las patas solo estaban definidas en el primer y el último keyframe. • El cuerpo no sube en el batido hacia abajo de forma clara: la elevación varía poco y sin relación con las alas, así que falta sensación de peso y empuje. Cambios: Fijo la inclinación del root y de la columna casi constante y repito las poses de las patas en todos los keyframes para que no se muevan. La elevación queda ligada al batido: baja en la subida del ala y sube tras el golpe hacia abajo. Subo un poco la altura general de vuelo. Añado un leve retardo en cuello y cola como movimiento secundario.",
+    "Ronda 3: aprobada\nFallos automáticos: El pie Leg.FL.4 patina 0.63 studs mientras está apoyado (en esta animación debería quedarse quieto). El pie Leg.FR.4 patina 0.63 studs mientras está apoyado (en esta animación debería quedarse quieto). Cambios: Sin cambios. El dragón vuela con todos los keyframes en el aire (grounded=false). Por eso el aviso de que patinan las patas delanteras no es un fallo real: esos 0.63 studs vienen del balanceo vertical normal del cuerpo, porque al bajar el ala su punta pasa a ser el punto más bajo y cambia la referencia de altura. Con las patas recogidas en el aire no hay apoyo que deba quedarse quieto. El batido cumple la descripción y tiene buen ritmo (alas arriba, barrido hacia abajo con la punta retrasada, recogida y vuelta). El cuerpo sube y baja con cada aletazo, y cuello y cola acompañan el movimiento. El último keyframe es igual al primero y no veo atravesamientos claros."
+   ],
+   "fallosFinales": [
+    "El pie Leg.FL.4 patina 0.63 studs mientras está apoyado (en esta animación debería quedarse quieto).",
+    "El pie Leg.FR.4 patina 0.63 studs mientras está apoyado (en esta animación debería quedarse quieto)."
+   ]
+  },
+  {
+   "esqueleto": "puerta",
+   "descripcion": "abrir la puerta despacio",
+   "estado": "¡Lista! (9 s) La IA la ha dado por buena.",
+   "segundos": 10,
+   "llamadas": 2,
+   "tokensEntrada": 7495,
+   "tokensSalida": 775,
+   "costeUSD": 0.045,
+   "registro": [
+    "Generada (plantilla base: open)",
+    "Ronda 1: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  },
+  {
+   "esqueleto": "r15",
+   "descripcion": "correr rápido",
+   "estado": "¡Lista! (68 s) La IA la ha dado por buena.",
+   "segundos": 68,
+   "llamadas": 2,
+   "tokensEntrada": 19933,
+   "tokensSalida": 6233,
+   "costeUSD": 0.204,
+   "registro": [
+    "Generada (plantilla base: run)",
+    "Ronda 1: aprobada\nFallos automáticos: Movimiento muy brusco: LeftKnee gira a 946°/s cerca de t=0.56 s. • La rodilla izquierda pasa de 50° a 95° entre t=0.513 y 0.56 (946°/s). Es un fallo menor y típico de una carrera rápida, donde la pierna se recoge con fuerza tras el despegue."
+   ],
+   "fallosFinales": [
+    "Movimiento muy brusco: LeftKnee gira a 946°/s cerca de t=0.56 s."
+   ]
+  },
+  {
+   "esqueleto": "r6",
+   "descripcion": "saludar con la mano",
+   "estado": "¡Lista! (77 s) La IA la ha dado por buena.",
+   "segundos": 77,
+   "llamadas": 4,
+   "tokensEntrada": 25877,
+   "tokensSalida": 9191,
+   "costeUSD": 0.287,
+   "registro": [
+    "Generada (plantilla base: wave)",
+    "Ronda 1: corregida\nFallos automáticos: Partes que se atraviesan: Neck ↔ Right Shoulder (t=0.90 s, 0.40 studs); Right Shoulder ↔ RootJoint (t=0.40 s, 0.34 studs). Movimiento muy brusco: Right Shoulder gira a 1518°/s cerca de t=0.27 s. • Con Right Shoulder side=168 el brazo pasa por encima de la cabeza. Además, el cuello se ladea hacia la derecha (side +8/+9), así que la cabeza choca con el brazo (t≈0.90 s). • Al subir el brazo de golpe, el hombro derecho atraviesa el torso (t≈0.40 s). • El brazo sube 166° en 0.28 s (unos 1500°/s): es demasiado brusco y no tiene arco. Cambios: Limito la elevación del brazo a side 122–150 y le doy bend 20 para que quede delante y separado de la cabeza. La cabeza se ladea hacia la izquierda, apartándose del brazo. Añado un keyframe intermedio (t=0.3) para que el brazo suba en arco y más despacio, con un pequeño sobrepaso. El saludo oscila de forma regular y luego se asienta.",
+    "Ronda 2: corregida\nFallos automáticos: Partes que se atraviesan: Right Shoulder ↔ RootJoint (t=0.50 s, 0.19 studs). Movimiento muy brusco: Right Shoulder gira a 1068°/s cerca de t=0.23 s. • En t=0.50 s el brazo derecho (side 150) sube demasiado y cruza por encima de la cabeza y el tronco. • La subida del brazo de side 6 a 80 en 0.18 s es demasiado brusca (más de 1000°/s). Cambios: Limito la altura máxima del brazo a side 135, con más bend (28) para separarlo hacia delante de la cabeza. El vaivén pasa a ser 112-135. Alargo la subida (0.15→0.42→0.65 s) para suavizarla y retraso todo el saludo; la duración pasa a 2.6 s. Añado un pequeño balanceo del brazo izquierdo como movimiento secundario.",
+    "Ronda 3: aprobada\nFallos automáticos: ninguno"
+   ],
+   "fallosFinales": [
+    "✓ Sin fallos detectados"
+   ]
+  }
+ ]
+}

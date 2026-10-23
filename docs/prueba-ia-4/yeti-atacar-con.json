@@ -1,0 +1,1820 @@
+{
+ "name": "Zarpazo Yeti",
+ "duration": 1.8,
+ "loop": false,
+ "keyframes": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.575,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": -6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 35,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 80,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 40,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 85,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.55,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.569,
+    "forward": -0.45,
+    "bend": -6,
+    "side": -4,
+    "twist": 10
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": -12,
+     "side": -6,
+     "twist": 30
+    },
+    {
+     "joint": "Cuello",
+     "bend": 4,
+     "side": 0,
+     "twist": -25
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 145,
+     "side": 65,
+     "twist": 20
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 60,
+     "side": 20,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 12,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -8,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.615,
+   "easing": "Linear",
+   "root": {
+    "right": 0,
+    "up": 0.625,
+    "forward": -0.025,
+    "bend": -1,
+    "side": -2,
+    "twist": 5
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": -2,
+     "side": -3,
+     "twist": 15
+    },
+    {
+     "joint": "Cuello",
+     "bend": 6,
+     "side": 0,
+     "twist": -12.5
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 132.5,
+     "side": 50,
+     "twist": 15
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 40,
+     "side": 17.5,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -12.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 18.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -6.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -11.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 8.5,
+     "side": 0,
+     "twist": 0
+    }
+   ],
+   "grounded": false
+  },
+  {
+   "time": 0.68,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.614,
+    "forward": 0.4,
+    "bend": 4,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 120,
+     "side": 35,
+     "twist": 10
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 20,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 25,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.74,
+   "easing": "Linear",
+   "root": {
+    "right": 0,
+    "up": 0.561,
+    "forward": 0.7,
+    "bend": 7,
+    "side": 1.5,
+    "twist": -6
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 15,
+     "side": 2.5,
+     "twist": -13
+    },
+    {
+     "joint": "Cuello",
+     "bend": 10,
+     "side": 0,
+     "twist": 10
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 90,
+     "side": 18.5,
+     "twist": 0
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 20,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 17.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 0,
+     "side": 17.5,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 92.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 30,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 27.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -18.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 12.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    }
+   ],
+   "grounded": false
+  },
+  {
+   "time": 0.8,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.468,
+    "forward": 1,
+    "bend": 10,
+    "side": 3,
+    "twist": -12
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 22,
+     "side": 5,
+     "twist": -26
+    },
+    {
+     "joint": "Cuello",
+     "bend": 12,
+     "side": 0,
+     "twist": 20
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 60,
+     "side": 2,
+     "twist": -10
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 35,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": -20,
+     "side": 20,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 95,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 35,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -22,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.1,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.527,
+    "forward": 0.95,
+    "bend": 8,
+    "side": 2,
+    "twist": -10
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 20,
+     "side": 4,
+     "twist": -22
+    },
+    {
+     "joint": "Cuello",
+     "bend": 8,
+     "side": 0,
+     "twist": 16
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 48,
+     "side": 6,
+     "twist": -5
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": -12,
+     "side": 18,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 33,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -20,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 16,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.25,
+   "easing": "Linear",
+   "root": {
+    "right": 0,
+    "up": 0.598,
+    "forward": 0.725,
+    "bend": 6.5,
+    "side": 1.5,
+    "twist": -7.5
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 17,
+     "side": 3,
+     "twist": -16
+    },
+    {
+     "joint": "Cuello",
+     "bend": 5,
+     "side": 0,
+     "twist": 12
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 45,
+     "side": 9,
+     "twist": -3.5
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 42.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 16.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 0,
+     "side": 17,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 89,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 28.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 27,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -9,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -16,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 13.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 13,
+     "side": 0,
+     "twist": 0
+    }
+   ],
+   "grounded": false
+  },
+  {
+   "time": 1.4,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.627,
+    "forward": 0.5,
+    "bend": 5,
+    "side": 1,
+    "twist": -5
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 14,
+     "side": 2,
+     "twist": -10
+    },
+    {
+     "joint": "Cuello",
+     "bend": 2,
+     "side": 0,
+     "twist": 8
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 42,
+     "side": 12,
+     "twist": -2
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 12,
+     "side": 16,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 88,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 24,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 24,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -12,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.6,
+   "easing": "Linear",
+   "root": {
+    "right": 0,
+    "up": 0.625,
+    "forward": 0.25,
+    "bend": 2.5,
+    "side": 0.5,
+    "twist": -2.5
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 11,
+     "side": 1,
+     "twist": -5
+    },
+    {
+     "joint": "Cuello",
+     "bend": -2,
+     "side": 0,
+     "twist": 4
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 38.5,
+     "side": 13.5,
+     "twist": -1
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 67.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -1,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 26,
+     "side": 15.5,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 86.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 19.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 21,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -6.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -8.5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 16.5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 7.5,
+     "side": 0,
+     "twist": 0
+    }
+   ],
+   "grounded": false
+  },
+  {
+   "time": 1.8,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0.575,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": -6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 35,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 80,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 40,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 85,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "template": "attack",
+ "authored": [
+  {
+   "time": 0,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": -6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 35,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 80,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 40,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 85,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.55,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": -0.45,
+    "bend": -6,
+    "side": -4,
+    "twist": 10
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": -12,
+     "side": -6,
+     "twist": 30
+    },
+    {
+     "joint": "Cuello",
+     "bend": 4,
+     "side": 0,
+     "twist": -25
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 145,
+     "side": 65,
+     "twist": 20
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -40,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 60,
+     "side": 20,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 12,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -8,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.68,
+   "easing": "Linear",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0.4,
+    "bend": 4,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 120,
+     "side": 35,
+     "twist": 10
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 0,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 20,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 25,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 0.8,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 1,
+    "bend": 10,
+    "side": 3,
+    "twist": -12
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 22,
+     "side": 5,
+     "twist": -26
+    },
+    {
+     "joint": "Cuello",
+     "bend": 12,
+     "side": 0,
+     "twist": 20
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 60,
+     "side": 2,
+     "twist": -10
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 35,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": -20,
+     "side": 20,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 95,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 35,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -22,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.1,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0.95,
+    "bend": 8,
+    "side": 2,
+    "twist": -10
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 20,
+     "side": 4,
+     "twist": -22
+    },
+    {
+     "joint": "Cuello",
+     "bend": 8,
+     "side": 0,
+     "twist": 16
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 48,
+     "side": 6,
+     "twist": -5
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 25,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": -12,
+     "side": 18,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 90,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 33,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 30,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -20,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 12,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 16,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.4,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0.5,
+    "bend": 5,
+    "side": 1,
+    "twist": -5
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 14,
+     "side": 2,
+     "twist": -10
+    },
+    {
+     "joint": "Cuello",
+     "bend": 2,
+     "side": 0,
+     "twist": 8
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 42,
+     "side": 12,
+     "twist": -2
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 55,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 12,
+     "side": 16,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 88,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 24,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 24,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -12,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 15,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 10,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  },
+  {
+   "time": 1.8,
+   "easing": "Cubic",
+   "grounded": true,
+   "lift": 0,
+   "root": {
+    "right": 0,
+    "up": 0,
+    "forward": 0,
+    "bend": 0,
+    "side": 0,
+    "twist": 0
+   },
+   "poses": [
+    {
+     "joint": "Cintura",
+     "bend": 8,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "Cuello",
+     "bend": -6,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroDer",
+     "bend": 35,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoDer",
+     "bend": 80,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaDer",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "HombroIzq",
+     "bend": 40,
+     "side": 15,
+     "twist": 0
+    },
+    {
+     "joint": "CodoIzq",
+     "bend": 85,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MunecaIzq",
+     "bend": -10,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloIzq",
+     "bend": 15,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaIzq",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloIzq",
+     "bend": -5,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "MusloDer",
+     "bend": -5,
+     "side": 6,
+     "twist": 0
+    },
+    {
+     "joint": "RodillaDer",
+     "bend": 18,
+     "side": 0,
+     "twist": 0
+    },
+    {
+     "joint": "TobilloDer",
+     "bend": 5,
+     "side": 0,
+     "twist": 0
+    }
+   ]
+  }
+ ],
+ "reviewLog": [
+  {
+   "title": "Generada (plantilla base: attack)",
+   "text": ""
+  },
+  {
+   "title": "Ronda 1: corregida",
+   "text": "Fallos automáticos: ninguno\n• En el seguimiento (t≈0.8–1.3) el brazo derecho cruza por delante del pecho con el hombro cerrado (side negativo) y el torso girado a la izquierda; el antebrazo roza o atraviesa el tronco.\nCambios: Abro el hombro derecho en el golpe y el seguimiento (side -15→2 y -10→6) y bajo un poco el giro de cintura para que la zarpa pase por delante del cuerpo sin atravesarlo. Añado un pequeño asentamiento a t=1.4."
+  },
+  {
+   "title": "Ronda 2: aprobada",
+   "text": "Fallos automáticos: ninguno"
+  }
+ ]
+}
