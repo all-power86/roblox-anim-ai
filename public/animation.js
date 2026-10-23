@@ -174,15 +174,19 @@ export function legChain(foot, motion) {
 // tres sentidos (adelante/atrás, abrir/cerrar, girar) y la rodilla se dobla, así el pie se
 // queda quieto aunque el torso gire, se incline o se desplace en cualquier dirección.
 // Funciona con cualquier pata (2-4 tramos, Motor6D, AnimationConstraint o Bone) porque usa
-// los ejes anatómicos de motion.js. Devuelve la distancia que queda en el peor pie.
+// los ejes anatómicos de motion.js. Si una pata no llega a su sitio, el pie se levanta.
+// Devuelve la distancia que queda en el peor pie apoyado y la lista de pies levantados.
 const PIN_MOTIONS = { 'leg.upper': ['bend', 'side', 'twist'], 'leg.lower': ['bend'] };
 const PIN_EFFORT = 0.0005; // coste de cambiar 1° (en fracciones de la altura de cadera)
+const REACH_TOLERANCE = 0.05; // si el pie queda más lejos de su sitio, se levanta (fracción de la altura de cadera)
+const LIFT_HEIGHT = 0.2; // altura a la que se levanta ese pie (por encima del umbral de "apoyado")
 function pinFeet(anim, skeleton, motion, k, index, feet, L) {
   const base = bakeAnimation(anim, skeleton, motion).keyframes[index];
   const fk0 = forwardKinematics(skeleton, base);
   const planted = feet.filter((f) => new THREE.Vector3().setFromMatrixPosition(fk0[f.name]).y - f.restPos.y < 0.15 * L);
   const rot = { ...base.rot };
   let worst = 0;
+  const lifted = [];
   for (const foot of planted) {
     const chain = legChain(foot, motion);
     if (chain.length < 2) continue;
@@ -197,10 +201,11 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
     };
     const params = chain.map(entry);
     const setRot = (p) => { const mj = motion.joints[p.joint]; rot[p.joint] = valuesToQuaternion(mj, clampValues(mj, p).values); };
-    // Error: distancia del pie a su sitio, con el resto del cuerpo como está en este keyframe.
+    // Error: distancia del pie a su objetivo, con el resto del cuerpo como está en este keyframe.
+    let target = foot.restPos;
     const error = () => {
       const fk = forwardKinematics(skeleton, { rot, offset: base.offset });
-      return new THREE.Vector3().setFromMatrixPosition(fk[foot.name]).distanceTo(foot.restPos);
+      return new THREE.Vector3().setFromMatrixPosition(fk[foot.name]).distanceTo(target);
     };
     params.forEach(setRot);
     // Se prefiere la solución que menos cambia la pose original (y antes doblar que abrir o
@@ -209,29 +214,43 @@ function pinFeet(anim, skeleton, motion, k, index, feet, L) {
     const start = params.map((p) => ({ bend: p.bend || 0, side: p.side || 0, twist: p.twist || 0 }));
     const cost = () => error() + params.reduce((sum, p, i) => sum + PIN_EFFORT * L
       * (Math.abs((p.bend || 0) - start[i].bend) + 1 * Math.abs((p.side || 0) - start[i].side) + 1 * Math.abs((p.twist || 0) - start[i].twist)), 0);
-    let best = cost();
-    for (let step = 8; step >= 0.25; step /= 2) {
-      let improved = true;
-      for (let guard = 0; improved && guard < 30; guard++) {
-        improved = false;
-        for (const p of params) {
-          const lims = motion.joints[p.joint].limits;
-          for (const key of PIN_MOTIONS[motion.joints[p.joint].role] || ['bend']) {
-            for (const dir of [1, -1]) {
-              const old = p[key] || 0;
-              p[key] = Math.min(lims[key][1], Math.max(lims[key][0], old + dir * step));
-              setRot(p);
-              const e = cost();
-              if (e < best - 1e-4) { best = e; improved = true; } else { p[key] = old; setRot(p); }
+    const solve = () => {
+      let best = cost();
+      for (let step = 8; step >= 0.25; step /= 2) {
+        let improved = true;
+        for (let guard = 0; improved && guard < 30; guard++) {
+          improved = false;
+          for (const p of params) {
+            const lims = motion.joints[p.joint].limits;
+            for (const key of PIN_MOTIONS[motion.joints[p.joint].role] || ['bend']) {
+              for (const dir of [1, -1]) {
+                const old = p[key] || 0;
+                p[key] = Math.min(lims[key][1], Math.max(lims[key][0], old + dir * step));
+                setRot(p);
+                const e = cost();
+                if (e < best - 1e-4) { best = e; improved = true; } else { p[key] = old; setRot(p); }
+              }
             }
           }
         }
       }
+    };
+    solve();
+    // La pata no llega a su sitio (p. ej. embestida muy larga): en vez de arrastrar el pie por
+    // el suelo, se levanta, como un lobo que se abalanza con las patas delanteras.
+    if (error() > REACH_TOLERANCE * L) {
+      target = foot.restPos.clone().add(new THREE.Vector3(0, LIFT_HEIGHT * L, 0)); // sube en vertical: no roza al despegar
+      solve();
+      lifted.push(foot.name);
     }
     params.forEach((p) => { for (const key of ['bend', 'side', 'twist']) p[key] = round(p[key] || 0); setRot(p); });
-    worst = Math.max(worst, error());
+    worst = Math.max(worst, target === foot.restPos ? error() : 0);
   }
-  return worst;
+  // Si ninguna pata apoyada ha podido quedarse en el suelo, el cuerpo va en el aire (salta):
+  // no se baja para forzar el apoyo, solo se evita que atraviese el suelo.
+  const pinnable = planted.filter((f) => legChain(f, motion).length >= 2);
+  if (pinnable.length && pinnable.every((f) => lifted.includes(f.name))) k.airborne = true; else delete k.airborne;
+  return { worst, lifted };
 }
 
 // Ajuste al suelo:
@@ -266,7 +285,7 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
       const low = lowestPoint(skeleton, fk);
       const lift = Number(k.lift) || 0;
       let up = 0;
-      if (k.grounded !== false || lift) up = skeleton.ground + lift - low;
+      if ((k.grounded !== false && !k.airborne) || lift) up = skeleton.ground + lift - low;
       else if (low < skeleton.ground) up = skeleton.ground - low;
       let right = 0;
       let forward = 0;
@@ -288,31 +307,37 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
   };
 
   if (plant && feet.length) fixKeyframes(true);
-  for (let iter = 0; iter < 4; iter++) {
-    fixKeyframes();
-    // ¿Se hunde entre keyframes? Buscar el peor momento de cada tramo.
-    const baked = bakeAnimation(anim, skeleton, motion);
-    const kfs = anim.keyframes;
-    const toInsert = [];
-    for (let i = 0; i + 1 < kfs.length; i++) {
-      const t0 = kfs[i].time;
-      const t1 = kfs[i + 1].time;
-      let worst = { depth: 0.02, t: null };
-      for (let s = 1; s < 6; s++) {
-        const t = t0 + ((t1 - t0) * s) / 6;
-        const low = lowestPoint(skeleton, forwardKinematics(skeleton, sampleBaked(baked, t)));
-        if (skeleton.ground - low > worst.depth) worst = { depth: skeleton.ground - low, t };
+  // Que no se hunda en el suelo, tampoco entre keyframes (inserta keyframes donde haga falta).
+  const keepAboveGround = () => {
+    for (let iter = 0; iter < 4; iter++) {
+      fixKeyframes();
+      // ¿Se hunde entre keyframes? Buscar el peor momento de cada tramo.
+      const baked = bakeAnimation(anim, skeleton, motion);
+      const kfs = anim.keyframes;
+      const toInsert = [];
+      for (let i = 0; i + 1 < kfs.length; i++) {
+        const t0 = kfs[i].time;
+        const t1 = kfs[i + 1].time;
+        let worst = { depth: 0.02, t: null };
+        for (let s = 1; s < 6; s++) {
+          const t = t0 + ((t1 - t0) * s) / 6;
+          const low = lowestPoint(skeleton, forwardKinematics(skeleton, sampleBaked(baked, t)));
+          if (skeleton.ground - low > worst.depth) worst = { depth: skeleton.ground - low, t };
+        }
+        if (worst.t != null) toInsert.push(worst.t);
       }
-      if (worst.t != null) toInsert.push(worst.t);
+      if (!toInsert.length) break;
+      for (const t of toInsert) {
+        const k = insertKeyframe(anim, t);
+        if (!k) continue;
+        k.grounded = false; // solo evitar hundirse, sin pegarlo al suelo
+        delete k.lift;
+        inserted++;
+      }
     }
-    if (!toInsert.length) break;
-    for (const t of toInsert) {
-      const k = insertKeyframe(anim, t);
-      k.grounded = false; // solo evitar hundirse, sin pegarlo al suelo
-      delete k.lift;
-      inserted++;
-    }
-  }
+  };
+  keepAboveGround();
+
   // Pies fijos al final, cuando la altura ya está ajustada: en cada keyframe (también los
   // insertados para no hundirse) y entre keyframes. pinFeet solo toca los pies que están en el suelo.
   if (plant && feet.length) {
@@ -320,7 +345,7 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
     anim.keyframes.forEach((k, i) => pinFeet(anim, skeleton, motion, k, i, feet, L));
     inserted += pinBetweenKeyframes(anim, skeleton, motion, feet, L);
     limitPinSpeed(anim, motion, feet);
-    fixKeyframes();
+    keepAboveGround();
   }
   anim.keyframes.sort((a, b) => a.time - b.time);
   return { changed, inserted };
@@ -330,6 +355,7 @@ export function groundFix(anim, skeleton, motion, { plant = false } = {}) {
 // los dos trozos pasan a ser lineales siguiendo la misma curva: con Cubic cada trozo
 // arrancaría y frenaría por separado y el movimiento iría a tirones.
 function insertKeyframe(anim, t) {
+  if (anim.keyframes.some((q) => Math.abs(q.time - t) < 0.005)) return null; // ya hay uno ahí
   const k = interpolateKeyframe(anim, t);
   const prev = anim.keyframes.filter((q) => q.time <= t).sort((a, b) => b.time - a.time)[0];
   if (prev && prev.easing === 'Cubic') { prev.easing = 'Linear'; k.easing = 'Linear'; }
@@ -372,10 +398,7 @@ function pinBetweenKeyframes(anim, skeleton, motion, feet, L) {
       if (worst.t != null) toInsert.push(worst.t);
     }
     if (!toInsert.length) break;
-    for (const t of toInsert) {
-      insertKeyframe(anim, t);
-      inserted++;
-    }
+    for (const t of toInsert) if (insertKeyframe(anim, t)) inserted++;
     anim.keyframes.sort((a, b) => a.time - b.time);
     for (const t of toInsert) {
       const i = anim.keyframes.findIndex((k) => k.time === round(t));
