@@ -157,7 +157,7 @@ Devuelve la animación completa que cumple la descripción.`;
   return { animation: anim, template: base.template, dropped, groundFix: fix, usage };
 }
 
-export async function review({ prompt, skeleton: raw, roles, bodyType, animation, image, issues, iteration }) {
+export async function review({ prompt, skeleton: raw, roles, bodyType, animation, image, issues, iteration, final = false }) {
   const { skeleton, motion, ctx } = prepare({ skeleton: raw, roles, bodyType });
   const base64 = String(image || '').replace(/^data:image\/png;base64,/, '');
   const issueText = (issues || []).length
@@ -165,7 +165,7 @@ export async function review({ prompt, skeleton: raw, roles, bodyType, animation
     : '- (ninguno)';
   const content = [
     { type: 'image', source: { type: 'base64', media_type: 'image/png', data: base64 } },
-    { type: 'text', text: `AUTORREVISIÓN — ronda ${iteration} de 3.
+    { type: 'text', text: `${final ? 'REVISIÓN FINAL — ya se han hecho 3 rondas de corrección; esta es la versión resultante.' : `AUTORREVISIÓN — ronda ${iteration} de 3.`}
 La imagen muestra la animación actual: columnas = momentos (t en segundos), fila de arriba = vista 3/4 frontal, fila de abajo = vista desde su lado derecho (el personaje mira hacia la derecha de la imagen en esa fila). Colores: azul tronco, amarillo cabeza y brazos, verde piernas, morado cola, rojo alas; la marca negra es la cara.
 
 DESCRIPCIÓN DEL USUARIO: ${prompt}
@@ -179,17 +179,21 @@ ANIMACIÓN ACTUAL (tal como la escribiste; después el programa ajusta solo la a
 ${JSON.stringify(authoredView(animation))}
 
 Revisa con ojo de animador: extremidades atravesándose, pies que patinan, giros imposibles, falta de ritmo o de peso, y si cumple la descripción.
-- Si está bien (o los únicos fallos son menores), responde ok=true, animation=null.
-- Si no, ok=false, lista los problemas, explica en "changes" qué cambias (en castellano, breve) y devuelve la animación corregida completa.` },
+${final
+    ? `- Ya no se aplicarán más correcciones: solo decide, con honestidad, si la apruebas. Si está bien (o los únicos fallos son menores), ok=true. Si no, ok=false y lista los problemas. En los dos casos animation=null y changes="".`
+    : `- Si está bien (o los únicos fallos son menores), responde ok=true, animation=null.
+- Si no, ok=false, lista los problemas, explica en "changes" qué cambias (en castellano, breve) y devuelve la animación corregida completa.`}` },
   ];
   const { data, usage } = await callClaude(content, ReviewSchema, 'revisar');
   let animation2 = null;
   let dropped = [];
-  if (!data.ok && data.animation) {
+  if (!data.ok && data.animation && !final) {
     const s = sanitize(data.animation, skeleton);
     animation2 = { ...s.anim, template: animation.template };
     dropped = s.dropped;
     groundFix(animation2, skeleton, motion, { plant: !['walk', 'run'].includes(animation.template) });
   }
-  return { ok: data.ok || !animation2, problems: data.problems, changes: data.changes, animation: animation2, dropped, usage };
+  // En la revisión final solo cuenta el veredicto (no se aplican correcciones).
+  const ok = final ? data.ok : data.ok || !animation2;
+  return { ok, problems: data.problems, changes: final ? '' : data.changes, animation: animation2, dropped, usage };
 }

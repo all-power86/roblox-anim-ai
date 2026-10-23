@@ -43,7 +43,12 @@ http.createServer(async (req, res) => {
     return reply(res, anim);
   }
   const round = Number((text.match(/ronda (\d+) de 3/) || [])[1] || 1);
-  // MOCK_NUNCA_OK=1: no aprueba nunca (para probar el estado "Lista con avisos").
+  // Revisión final: aprueba salvo con MOCK_NUNCA_OK=1 (y MOCK_FINAL_OK=1 la aprueba igualmente).
+  if (text.includes('REVISIÓN FINAL')) {
+    const ok = !process.env.MOCK_NUNCA_OK || Boolean(process.env.MOCK_FINAL_OK);
+    return reply(res, { ok, problems: ok ? [] : [{ type: 'ritmo', detail: 'Sigue faltando peso (simulado).' }], changes: '', animation: null });
+  }
+  // MOCK_NUNCA_OK=1: no aprueba nunca en las rondas (para probar el estado "Lista con avisos").
   if (round >= 2 && !process.env.MOCK_NUNCA_OK) return reply(res, { ok: true, problems: [], changes: '', animation: null });
   const anim = JSON.parse(text.split(/ANIMACIÓN ACTUAL[^\n]*:\n/)[1].split('\n\nRevisa con ojo')[0]);
   anim.keyframes.forEach((k) => {

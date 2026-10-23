@@ -85,9 +85,9 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, out);
       }
       const out = await review(body);
-      console.log(`Revisión ${body.iteration}: ${out.ok ? 'OK' : 'corregida'} en ${((Date.now() - started) / 1000).toFixed(1)} s`);
+      console.log(`Revisión ${body.final ? 'final' : body.iteration}: ${out.ok ? 'OK' : body.final ? 'no aprobada' : 'corregida'} en ${((Date.now() - started) / 1000).toFixed(1)} s`);
       await logReview({
-        tipo: 'revisar', ronda: body.iteration, prompt: body.prompt, esqueleto: body.skeleton.name,
+        tipo: body.final ? 'revision_final' : 'revisar', ronda: body.final ? 'final' : body.iteration, prompt: body.prompt, esqueleto: body.skeleton.name,
         fallosAutomaticos: (body.issues || []).map((i) => i.message), ok: out.ok, problemas: out.problems, cambios: out.changes, uso: out.usage,
       });
       return sendJson(res, 200, out);

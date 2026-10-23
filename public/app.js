@@ -223,6 +223,7 @@ $('generate').onclick = async () => {
     renderLog();
 
     let approved = false;
+    let finalProblems = [];
     const reviewed = $('self-review').checked;
     if (reviewed) {
       for (let round = 1; round <= MAX_REVIEW_ROUNDS; round++) {
@@ -241,6 +242,19 @@ $('generate').onclick = async () => {
         anim = rev.animation;
         setAnimation(anim, { keepLog: true });
       }
+      // Tras la 3.ª corrección nadie ha revisado la versión final. Si no le quedan fallos
+      // automáticos, la IA la revisa una vez más, solo para aprobarla o no (sin corregir).
+      const remaining = analyzeAnimation(anim, state.skeleton, state.motion, { legLength: state.ctx.legLength, prompt }).issues.filter((i) => i.severity !== 'baja');
+      if (!approved && !remaining.length) {
+        const image = sheetImage(anim);
+        setStatus('Revisión final: la IA está mirando la versión corregida…');
+        const rev = await api('/api/review', { ...base, animation: anim, image, issues: [], iteration: MAX_REVIEW_ROUNDS + 1, final: true });
+        approved = rev.ok;
+        const problems = (rev.problems || []).map((p) => `• ${p.detail}`).join('\n');
+        state.log.push({ title: `Revisión final: ${rev.ok ? 'aprobada' : 'no aprobada'}`, text: ['Fallos automáticos: ninguno', problems].filter(Boolean).join('\n'), image });
+        renderLog();
+        if (!rev.ok) finalProblems = (rev.problems || []).map((p) => p.detail);
+      }
     }
     anim.reviewLog = state.log.map(({ title, text }) => ({ title, text }));
     window.__ultimaAnimacion = anim; // para tools/prueba-ia.mjs
@@ -254,7 +268,9 @@ $('generate').onclick = async () => {
     } else {
       const why = approved
         ? 'La IA la ha dado por buena, pero la revisión automática ha encontrado fallos.'
-        : `La IA no la ha dado por buena tras ${MAX_REVIEW_ROUNDS} rondas de revisión${left ? '.' : ': su última corrección no se ha vuelto a revisar, mírala antes de usarla.'}`;
+        : finalProblems.length
+          ? `La IA no la ha dado por buena ni en la revisión final. Lo que ve mal: ${finalProblems.join(' ')}`
+          : `La IA no la ha dado por buena tras ${MAX_REVIEW_ROUNDS} rondas de revisión${left ? '.' : ': su última corrección no se ha vuelto a revisar, mírala antes de usarla.'}`;
       setStatus(`Lista con avisos (${secs}). ${why}${left ? ` Queda por mejorar: ${left}. Detalles en "Revisión automática".` : ''}`, false, true);
     }
   } catch (err) {
